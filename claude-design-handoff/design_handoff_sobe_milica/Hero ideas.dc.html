@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#E7E0D2;font-family:'Mulish',sans-serif;color:#33352B}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;margin:0;line-height:1.02;font-weight:600}
+  img{display:block;max-width:100%}
+  .badge{position:absolute;top:18px;left:18px;z-index:20;background:#33352B;color:#F4EEE1;font-size:12px;font-weight:700;letter-spacing:.12em;padding:7px 14px;border-radius:100px}
+  .note{max-width:760px;margin:0 auto;padding:0 28px;color:#6E7060;font-size:14.5px;line-height:1.6;text-align:center}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px clamp(22px,4vw,54px)}
+  .nlinks{display:flex;gap:26px;font-size:13px;font-weight:500}
+  .kick{font-size:11px;letter-spacing:.34em;text-transform:uppercase;font-weight:600}
+  .cta{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:14px 26px;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer}
+  .rate{display:flex;align-items:center;gap:11px}
+  .rbox{display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:#1a3a6b;color:#fff;border-radius:11px 11px 11px 3px;font-weight:800;font-size:18px}
+</style>
+</helmet>
+
+<div style="display:flex;flex-direction:column;gap:60px;padding:60px 0 90px;width:1500px;max-width:96vw;margin:0 auto">
+
+  <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-size:30px;color:#4b4e40">Sobe Milica — 3 pravca za hero / hero directions</div>
+
+  <!-- OPTION D — B+C COMBINED + PALIĆ MOTIF -->
+  <div id="2a" style="position:relative">
+    <span class="badge">D · B+C · palićki motiv</span>
+    <div style="position:relative;background:#2A2E25;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(30,32,24,.3)">
+      <!-- faint heart watermark -->
+      <div style="position:absolute;inset:0;opacity:.05;background-image:url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><path d='M32 40c-6-5-12-9-12-15a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 6-6 10-12 15z' fill='%23C9B78C'/></svg>&quot;);background-size:52px 52px"></div>
+
+      <div class="nav" style="position:relative;z-index:2">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#F4EEE1">Sobe Milica</div>
+        <div class="nlinks" style="color:rgba(244,238,225,.8)"><span>O nama</span><span>Sobe</span><span>Bašta</span><span>Palić</span><span>Kontakt</span></div>
+        <span class="cta" style="background:#F4EEE1;color:#2A2E25;padding:10px 20px;font-size:12px">Rezervišite</span>
+      </div>
+
+      <!-- folk triangle divider band -->
+      <div style="position:relative;z-index:2;height:16px;background-image:url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='16' viewBox='0 0 34 16'><path d='M4 3 h10 l-5 8 z' fill='none' stroke='%23C9B78C' stroke-width='1.1'/><path d='M20 3 h10 l-5 8 z' fill='%237E876B'/></svg>&quot;);background-size:34px 16px;background-repeat:repeat-x;background-position:center;opacity:.7"></div>
+
+      <div style="position:relative;z-index:2;text-align:center;padding:34px 24px 12px">
+        <div class="kick" style="color:#C9B78C;margin-bottom:16px;display:inline-flex;align-items:center;gap:12px"><span style="width:20px;height:1px;background:#C9B78C;opacity:.6"></span>Porodično prenoćište · Palić<span style="width:20px;height:1px;background:#C9B78C;opacity:.6"></span></div>
+        <h1 style="font-size:clamp(52px,7.4vw,116px);color:#F7F2E6;letter-spacing:-.01em">Sobe Milica</h1>
+        <p style="font-size:17px;line-height:1.55;color:#C7C6B8;margin:16px auto 0;max-width:52ch;font-weight:300">Odmor u zelenilu, daleko od gužve — bašta, roštilj i tišina koja leči.</p>
+        <div style="display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:16px;margin-top:26px">
+          <span class="cta" style="background:#F4EEE1;color:#2A2E25">Rezervišite boravak</span>
+          <span class="cta" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.5)">Pogledajte baštu</span>
+          <div class="rate"><div class="rbox">9.4</div><div style="line-height:1.2"><div style="font-weight:700;font-size:13px;color:#fff">Izuzetno</div><div style="font-size:11px;color:rgba(255,255,255,.75)">Booking.com</div></div></div>
+        </div>
+      </div>
+
+      <!-- triptych -->
+      <div style="position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px;padding:24px 22px 30px;height:360px">
+        <div style="border-radius:14px;overflow:hidden"><img src="uploads/yard-5.JPG" alt="Lavanda" style="width:100%;height:100%;object-fit:cover"/></div>
+        <div style="border-radius:14px;overflow:hidden"><img src="uploads/rose-1.JPG" alt="Terasa" style="width:100%;height:100%;object-fit:cover"/></div>
+        <div style="border-radius:14px;overflow:hidden"><img src="uploads/yard-7.JPG" alt="Ljuljaška" style="width:100%;height:100%;object-fit:cover"/></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">B + C spojeni: topla tamna podloga i veliko centrirano ime, ispod triptih bašte. Diskretno utkan palićki motiv — jedva vidljivi srca (watermark), folk traka od trouglova ispod navigacije, i motiv kao ukras oko labela. Boja motiva je zlatno-žuta + žalfija da ostane u paleti; mogu preći na autentično folk-plavo za jaču prepoznatljivost.</p>
+  </div>
+
+
+  <!-- OPTION A — EDITORIAL SPLIT -->
+  <div id="1a" style="position:relative">
+    <span class="badge">A · Editorial split</span>
+    <div style="background:#FBF7EE;border:1px solid #E4DCCB;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(60,60,40,.14)">
+      <div class="nav" style="border-bottom:1px solid #EEE7D8">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600">Sobe Milica</div>
+        <div class="nlinks" style="color:#5E6152"><span>O nama</span><span>Sobe</span><span>Bašta</span><span>Palić</span><span>Kontakt</span></div>
+        <span class="cta" style="background:#7E876B;color:#fff;padding:10px 20px;font-size:12px">Rezervišite</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.05fr 1fr;min-height:560px">
+        <div style="padding:clamp(34px,4.5vw,72px);display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px"><span style="width:32px;height:1px;background:#B98A72"></span><span class="kick" style="color:#B98A72">Palić · Vojvodina · Srbija</span></div>
+          <h1 style="font-size:clamp(52px,6vw,92px);color:#33352B">Mir koji<br/>se pamti</h1>
+          <p style="font-size:18px;line-height:1.6;color:#5E6152;margin:24px 0 0;max-width:44ch;font-weight:300">Malo porodično prenoćište okruženo baštom, u srcu Palića. Hlad starog drveta, cvrkut ptica i topla dobrodošlica.</p>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:34px">
+            <span class="cta" style="background:#33352B;color:#F4EEE1">Rezervišite boravak</span>
+            <div class="rate"><div class="rbox">9.4</div><div style="line-height:1.25"><div style="font-weight:700;font-size:13px">Izuzetno</div><div style="font-size:12px;color:#8A8B7C">Booking.com</div></div></div>
+          </div>
+        </div>
+        <div style="position:relative;padding:18px 18px 18px 0">
+          <img src="uploads/yard-5.JPG" alt="Lavanda" style="width:100%;height:100%;object-fit:cover;border-radius:16px"/>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">Tipografija nosi ton, fotografija je uokvirena i mirna. Bašta (lavanda) je “junak” umesto fasade. Radi savršeno i za dužačke srpske naslove.</p>
+  </div>
+
+  <!-- OPTION B — FRAMED IMAGE, TITLE OVER -->
+  <div id="1b" style="position:relative">
+    <span class="badge">B · Uokvirena scena</span>
+    <div style="background:#2E332A;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(30,32,24,.28)">
+      <div class="nav">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#F4EEE1">Sobe Milica</div>
+        <div class="nlinks" style="color:rgba(244,238,225,.8)"><span>O nama</span><span>Sobe</span><span>Bašta</span><span>Palić</span><span>Kontakt</span></div>
+        <span class="cta" style="background:#F4EEE1;color:#2E332A;padding:10px 20px;font-size:12px">Rezervišite</span>
+      </div>
+      <div style="text-align:center;padding:26px 24px 10px">
+        <div class="kick" style="color:#C9B78C;margin-bottom:16px">Porodično prenoćište · Palić</div>
+        <h1 style="font-size:clamp(52px,7.4vw,116px);color:#F7F2E6;letter-spacing:-.01em">Sobe Milica</h1>
+        <p style="font-size:17px;line-height:1.55;color:#C7C6B8;margin:16px auto 0;max-width:52ch;font-weight:300">Odmor u zelenilu, daleko od gužve — bašta, roštilj i tišina koja leči.</p>
+      </div>
+      <div style="position:relative;margin:20px 22px 26px;border-radius:16px;overflow:hidden;height:400px">
+        <img src="uploads/yard-7.JPG" alt="Bašta sa ljuljaškom" style="width:100%;height:100%;object-fit:cover"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(20,22,16,.5))"></div>
+        <div style="position:absolute;left:26px;bottom:22px;display:flex;gap:12px;align-items:center">
+          <span class="cta" style="background:#fff;color:#33352B">Rezervišite boravak</span>
+          <span class="cta" style="background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.5)">Pogledajte baštu</span>
+        </div>
+        <div class="rate" style="position:absolute;right:24px;bottom:22px"><div class="rbox">9.4</div><div style="line-height:1.2"><div style="font-weight:700;font-size:13px;color:#fff">Izuzetno</div><div style="font-size:11px;color:rgba(255,255,255,.8)">Booking.com</div></div></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">Ime je veliko i centrirano na toploj tamnoj podlozi; slika je scena unutar okvira, ne preko celog ekrana. Elegantno i “boutique”, kraće po visini.</p>
+  </div>
+
+  <!-- OPTION C — TRIPTYCH -->
+  <div id="1c" style="position:relative">
+    <span class="badge">C · Triptih bašte</span>
+    <div style="background:#F1EADB;border:1px solid #E4DCCB;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(60,60,40,.14)">
+      <div class="nav" style="border-bottom:1px solid #E7E0D0">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600">Sobe Milica</div>
+        <div class="nlinks" style="color:#5E6152"><span>O nama</span><span>Sobe</span><span>Bašta</span><span>Palić</span><span>Kontakt</span></div>
+        <span class="cta" style="background:#7E876B;color:#fff;padding:10px 20px;font-size:12px">Rezervišite</span>
+      </div>
+      <div style="text-align:center;padding:clamp(30px,4vw,56px) 24px 22px">
+        <div class="kick" style="color:#B98A72;margin-bottom:18px">Palić · Vojvodina · Srbija</div>
+        <h1 style="font-size:clamp(48px,6.4vw,104px);color:#33352B">Vaš mir u bašti</h1>
+        <p style="font-size:17.5px;line-height:1.6;color:#5E6152;margin:18px auto 0;max-width:50ch;font-weight:300">Boutique prenoćište za parove i porodice, na par minuta od Palićkog jezera.</p>
+        <div style="display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:18px;margin-top:26px">
+          <span class="cta" style="background:#33352B;color:#F4EEE1">Rezervišite boravak</span>
+          <div class="rate"><div class="rbox">9.4</div><div style="line-height:1.2"><div style="font-weight:700;font-size:13px">Izuzetno</div><div style="font-size:12px;color:#8A8B7C">Booking.com</div></div></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px;padding:6px 20px 24px;height:340px">
+        <div style="border-radius:14px;overflow:hidden"><img src="uploads/yard-5.JPG" alt="Lavanda" style="width:100%;height:100%;object-fit:cover"/></div>
+        <div style="border-radius:14px;overflow:hidden"><img src="uploads/rose-1.JPG" alt="Terasa" style="width:100%;height:100%;object-fit:cover"/></div>
+        <div style="border-radius:14px;overflow:hidden"><img src="uploads/yard-7.JPG" alt="Ljuljaška" style="width:100%;height:100%;object-fit:cover"/></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">Naslov + tri kurirane fotografije bašte kao mala galerija. Odmah prenosi priču (lavanda → terasa → igra za decu) bez oslanjanja na jednu sliku fasade.</p>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Mulish:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#F4EEE1;color:#33352B;font-family:'Mulish',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margin:0;line-height:1.04;letter-spacing:.005em}
+  ::selection{background:#7E876B;color:#fff}
+  /* section reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1)}
+  .reveal.is-in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  /* hero crossfade */
+  .hero-a{animation:heroFadeA 15s ease-in-out infinite}
+  .hero-b{animation:heroFadeB 15s ease-in-out infinite}
+  @keyframes heroFadeA{0%,40%{opacity:1}50%,90%{opacity:0}100%{opacity:1}}
+  @keyframes heroFadeB{0%,40%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  [data-hero="sunny"] .hero-b{opacity:0!important;animation:none!important}
+  [data-hero="sunny"] .hero-a{opacity:1!important;animation:none!important}
+  [data-hero="overcast"] .hero-a{opacity:0!important;animation:none!important}
+  [data-hero="overcast"] .hero-b{opacity:1!important;animation:none!important}
+  /* warm photo treatment */
+  [data-photo="warm"] .ph{filter:saturate(1.05) sepia(.12) contrast(1.015) brightness(1.02)}
+  /* ken burns */
+  .kb{animation:kb 22s ease-in-out infinite alternate}
+  @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.11)}}
+  /* nav */
+  .navwrap{transition:background .4s ease,box-shadow .4s ease,padding .4s ease}
+  .navlink{position:relative;text-decoration:none;padding:4px 0}
+  .navlink::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1px;background:currentColor;transition:right .35s ease}
+  .navlink:hover::after{right:0}
+  .burger{display:none}
+  @media(max-width:920px){
+    .navlinks{position:fixed;top:0;right:0;height:100vh;width:min(78vw,340px);flex-direction:column;justify-content:center;align-items:flex-start;gap:26px!important;background:#FBF7EE;padding:40px 38px;transform:translateX(105%);transition:transform .5s cubic-bezier(.7,0,.2,1);box-shadow:-30px 0 80px rgba(40,40,30,.14);z-index:60}
+    [data-nav="open"] .navlinks{transform:none}
+    .navlinks .navlink{font-size:20px}
+    .burger{display:inline-flex}
+    .navcta-desktop{display:none!important}
+  }
+  .btn{cursor:pointer;text-decoration:none;border:none;font-family:'Mulish';transition:transform .3s ease,background .3s ease,color .3s ease,box-shadow .3s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0)}
+  .lift{transition:transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .55s ease}
+  .lift:hover{transform:translateY(-6px)}
+  .thumb{cursor:pointer;transition:transform .5s ease,filter .5s ease;overflow:hidden}
+  .thumb img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .thumb:hover img{transform:scale(1.07)}
+  .chip{transition:background .3s ease,color .3s ease,border-color .3s ease}
+  .chip:hover{background:#7E876B;color:#fff;border-color:#7E876B}
+  /* masonry garden */
+  .masonry{column-count:3;column-gap:16px}
+  @media(max-width:900px){.masonry{column-count:2}}
+  @media(max-width:560px){.masonry{column-count:1}}
+  .masonry .thumb{width:100%;margin:0 0 16px;break-inside:avoid;border-radius:14px}
+  /* lightbox */
+  .lb-enter{animation:lbIn .35s ease both}
+  @keyframes lbIn{from{opacity:0}to{opacity:1}}
+  .lb-img{animation:lbImg .4s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes lbImg{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+  .icn{width:34px;height:34px;stroke:#5F6650;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .icn-lg{width:26px;height:26px;stroke:#7E876B;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .scrollcue{animation:cue 2.2s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(9px);opacity:1}}
+  /* ── Palić folk motif: merlon crenellation + triangle columns ── */
+  .msteps{height:26px;background-repeat:repeat-x;background-position:center bottom;background-size:35px 26px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='48' viewBox='0 0 64 48'><rect x='29' y='2' width='6' height='6' fill='%237E876B'/><path fill-rule='evenodd' fill='%237E876B' d='M2 48 V32 H14 V24 H22 V14 H42 V24 H50 V32 H62 V48 Z M32 33 c-3.8-2.9-6.8-4.9-6.8-8.1 a3.4 3.4 0 0 1 6.8-1.2 a3.4 3.4 0 0 1 6.8 1.2 c0 3.2-3 5.2-6.8 8.1 z'/></svg>")}
+  .msteps-l{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='48' viewBox='0 0 64 48'><rect x='29' y='2' width='6' height='6' fill='%23E9E1CF'/><path fill-rule='evenodd' fill='%23E9E1CF' d='M2 48 V32 H14 V24 H22 V14 H42 V24 H50 V32 H62 V48 Z M32 33 c-3.8-2.9-6.8-4.9-6.8-8.1 a3.4 3.4 0 0 1 6.8-1.2 a3.4 3.4 0 0 1 6.8 1.2 c0 3.2-3 5.2-6.8 8.1 z'/></svg>")}
+  .msteps-clay{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='48' viewBox='0 0 64 48'><rect x='29' y='2' width='6' height='6' fill='%23B98A72'/><path fill-rule='evenodd' fill='%23B98A72' d='M2 48 V32 H14 V24 H22 V14 H42 V24 H50 V32 H62 V48 Z M32 33 c-3.8-2.9-6.8-4.9-6.8-8.1 a3.4 3.4 0 0 1 6.8-1.2 a3.4 3.4 0 0 1 6.8 1.2 c0 3.2-3 5.2-6.8 8.1 z'/></svg>")}
+  .mdivider{display:flex;align-items:center;justify-content:center;gap:24px;max-width:1240px;margin:0 auto}
+  .mdivider::before,.mdivider::after{content:"";flex:1;max-width:230px;height:1px;background:linear-gradient(90deg,transparent,#CFC2A8)}
+  .mdivider.dark::before,.mdivider.dark::after{background:linear-gradient(90deg,transparent,rgba(201,183,140,.4))}
+  .tri-col{background-repeat:repeat-y;background-position:center top;background-size:20px 24px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'><path d='M4 4 h12 l-6 11 z' fill='%23B98A72'/></svg>")}
+  .hero-trip{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px;height:clamp(240px,40vh,400px)}
+  @media(max-width:640px){.hero-trip{height:200px;gap:9px}}
+  .lbl-orn{display:inline-flex;align-items:center;gap:13px}
+  .lbl-orn::before,.lbl-orn::after{content:"";width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid currentColor;opacity:.6}
+</style>
+</helmet>
+
+<div data-hero="{{ heroMode }}" data-photo="{{ photoTreatment }}" data-nav="{{ navState }}" style="position:relative;background:#F4EEE1;overflow-x:hidden">
+
+  <!-- NAV -->
+  <div class="navwrap" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,54px);background:{{ navBg }};backdrop-filter:blur(8px);box-shadow:{{ navShadow }}">
+    <a href="#pocetak" style="text-decoration:none;display:flex;flex-direction:column;line-height:1">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;letter-spacing:.02em;color:{{ navInk }}">Sobe Milica</span>
+      <span style="font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:{{ navInkSoft }};margin-top:3px">Palić · Vojvodina</span>
+    </a>
+    <nav class="navlinks" style="display:flex;align-items:center;gap:30px">
+      <a class="navlink" href="#o-nama" onClick="{{ closeNav }}" style="color:{{ navInk }};font-size:14px;font-weight:500;letter-spacing:.01em">{{ t.navAbout }}</a>
+      <a class="navlink" href="#sobe" onClick="{{ closeNav }}" style="color:{{ navInk }};font-size:14px;font-weight:500">{{ t.navRooms }}</a>
+      <a class="navlink" href="#dvoriste" onClick="{{ closeNav }}" style="color:{{ navInk }};font-size:14px;font-weight:500">{{ t.navGarden }}</a>
+      <a class="navlink" href="#palic" onClick="{{ closeNav }}" style="color:{{ navInk }};font-size:14px;font-weight:500">Palić</a>
+      <a class="navlink" href="#kontakt" onClick="{{ closeNav }}" style="color:{{ navInk }};font-size:14px;font-weight:500">{{ t.navContact }}</a>
+      <button class="btn" onClick="{{ toggleLang }}" style="background:transparent;border:1px solid {{ navBorder }};color:{{ navInk }};border-radius:100px;padding:7px 15px;font-size:12px;font-weight:700;letter-spacing:.08em">{{ langOther }}</button>
+      <a class="btn navcta-desktop" href="{{ bookingUrl }}" target="_blank" rel="noopener" style="background:#7E876B;color:#fff;border-radius:100px;padding:11px 22px;font-size:13px;font-weight:700;letter-spacing:.02em;box-shadow:0 8px 24px rgba(95,102,80,.28)">{{ t.navBook }}</a>
+    </nav>
+    <button class="btn burger" onClick="{{ toggleNav }}" aria-label="Menu" style="background:transparent;border:none;width:40px;height:40px;flex-direction:column;justify-content:center;gap:5px;z-index:61;align-items:center">
+      <span style="display:block;width:24px;height:2px;background:{{ navInk }};border-radius:2px"></span>
+      <span style="display:block;width:24px;height:2px;background:{{ navInk }};border-radius:2px"></span>
+      <span style="display:block;width:16px;height:2px;background:{{ navInk }};border-radius:2px"></span>
+    </button>
+  </div>
+
+  <!-- HERO -->
+  <section id="pocetak" data-screen-label="Hero" style="position:relative;background:#2A2E25;overflow:hidden">
+    <!-- folk merlon crown under the fixed nav -->
+    <div class="msteps msteps-l" style="position:relative;z-index:2;margin-top:clamp(84px,11vh,104px);height:24px;opacity:.7"></div>
+
+    <div style="position:relative;z-index:2;text-align:center;padding:clamp(30px,5vh,54px) clamp(20px,5vw,60px) 8px;color:#fff">
+      <div class="lbl-orn kick" style="color:#C9B78C;letter-spacing:.34em;text-transform:uppercase;font-size:11px;font-weight:600">{{ t.heroKicker }}</div>
+      <h1 style="font-size:clamp(56px,9vw,128px);font-weight:600;letter-spacing:-.01em;color:#F7F2E6;margin-top:18px">Sobe Milica</h1>
+      <p style="max-width:56ch;font-size:clamp(16px,2vw,20px);line-height:1.55;margin:18px auto 0;color:#F4EEE1;opacity:.82;font-weight:300">{{ t.heroTag }}</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px;margin-top:32px">
+        <a class="btn" href="{{ bookingUrl }}" target="_blank" rel="noopener" style="background:#F4EEE1;color:#2A2E25;border-radius:100px;padding:16px 32px;font-size:15px;font-weight:700;letter-spacing:.01em;box-shadow:0 14px 40px rgba(0,0,0,.28)">{{ t.heroBook }}</a>
+        <a class="btn" href="#dvoriste" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px)">{{ t.heroGarden }}</a>
+        <div style="display:flex;align-items:center;gap:12px;padding-left:6px">
+          <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;background:#1a3a6b;color:#fff;border-radius:12px 12px 12px 3px;font-family:'Mulish';font-weight:800;font-size:19px;box-shadow:0 8px 22px rgba(0,0,0,.25)">9.4</div>
+          <div style="line-height:1.2;text-align:left">
+            <div style="font-weight:700;font-size:14px;color:#fff">{{ t.ratingWord }}</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.8)">{{ t.ratingLabel }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- garden triptych -->
+    <div class="hero-trip" style="position:relative;z-index:2;max-width:1240px;margin:clamp(26px,4vh,40px) auto 0;padding:0 clamp(14px,4vw,40px) clamp(30px,5vh,46px)">
+      <div class="ph" style="border-radius:16px;overflow:hidden;box-shadow:0 20px 44px rgba(0,0,0,.28)"><img class="kb" src="uploads/yard-5.JPG" alt="Lavanda u dvorištu Sobe Milica" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="ph" style="border-radius:16px;overflow:hidden;box-shadow:0 20px 44px rgba(0,0,0,.28)"><img class="kb" src="uploads/rose-1.JPG" alt="Natkrivena terasa ka dvorištu" style="width:100%;height:100%;object-fit:cover"></div>
+      <div class="ph" style="border-radius:16px;overflow:hidden;box-shadow:0 20px 44px rgba(0,0,0,.28)"><img class="kb" src="uploads/yard-7.JPG" alt="Ljuljaška pod trešnjom" style="width:100%;height:100%;object-fit:cover"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="o-nama" data-screen-label="About" style="scroll-margin-top:80px;max-width:1240px;margin:0 auto;padding:clamp(70px,11vh,140px) clamp(20px,5vw,60px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,6vw,80px);align-items:center">
+      <div class="reveal">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <span style="width:34px;height:1px;background:#B98A72"></span>
+          <span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600">{{ t.aboutLabel }}</span>
+        </div>
+        <h2 style="font-size:clamp(34px,5vw,62px);color:#33352B">{{ t.aboutHeading }}</h2>
+        <p style="font-size:17px;line-height:1.7;color:#5E6152;margin:26px 0 0;max-width:52ch">{{ t.aboutP1 }}</p>
+        <p style="font-size:17px;line-height:1.7;color:#5E6152;margin:18px 0 0;max-width:52ch">{{ t.aboutP2 }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
+          <sc-for list="{{ features }}" as="f" hint-placeholder-count="7">
+            <span class="chip" style="border:1px solid #E1D8C6;background:#FBF7EE;color:#5E6152;border-radius:100px;padding:9px 16px;font-size:13px;font-weight:600">{{ f.label }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div class="reveal" style="position:relative">
+        <div class="ph" style="border-radius:20px;overflow:hidden;box-shadow:0 30px 70px rgba(60,60,40,.2)">
+          <img src="uploads/yard-5.JPG" alt="Lavanda u dvorištu Sobe Milica" style="width:100%;height:clamp(360px,52vh,560px);object-fit:cover">
+        </div>
+        <div style="position:absolute;bottom:-26px;left:-10px;background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:20px 24px;box-shadow:0 20px 44px rgba(60,60,40,.16);max-width:230px">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;color:#7E876B;line-height:1">2</div>
+          <div style="font-size:13px;color:#5E6152;line-height:1.4;margin-top:4px">{{ t.aboutStat }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="background:#F4EEE1;padding:clamp(22px,4vh,46px) clamp(20px,5vw,60px)"><div class="mdivider"><span class="msteps" style="width:245px;height:26px;flex:none"></span></div></div>
+
+  <!-- ROOMS -->
+  <section id="sobe" data-screen-label="Rooms" style="scroll-margin-top:80px;background:#EDE6D6;padding:clamp(70px,11vh,140px) clamp(20px,5vw,60px)">
+    <div style="max-width:1240px;margin:0 auto">
+      <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 56px">
+        <div class="lbl-orn" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:14px">{{ t.roomsLabel }}</div>
+        <h2 style="font-size:clamp(34px,5.4vw,64px);color:#33352B">{{ t.roomsHeading }}</h2>
+        <p style="font-size:17px;line-height:1.7;color:#5E6152;margin:20px 0 0">{{ t.roomsSub }}</p>
+      </div>
+
+      <!-- Swan -->
+      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,4vw,56px);align-items:center;margin-bottom:clamp(50px,8vh,96px)">
+        <div>
+          <div class="thumb ph lift" onClick="{{ swanLead.onClick }}" style="border-radius:20px;box-shadow:0 26px 60px rgba(60,60,40,.2)">
+            <img src="{{ swanLead.src }}" alt="Soba Labud" style="width:100%;height:clamp(340px,50vh,520px);object-fit:cover">
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px">
+            <sc-for list="{{ swanThumbs }}" as="g" hint-placeholder-count="4">
+              <div class="thumb ph" onClick="{{ g.onClick }}" style="border-radius:12px;aspect-ratio:1;box-shadow:0 8px 20px rgba(60,60,40,.12)">
+                <img src="{{ g.src }}" alt="{{ g.alt }}" style="width:100%;height:100%;object-fit:cover">
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+            <h3 style="font-size:clamp(30px,4.4vw,50px);color:#33352B">{{ t.swanName }}</h3>
+            <span style="font-size:13px;color:#7E876B;font-weight:600;letter-spacing:.04em">{{ t.swanTag }}</span>
+          </div>
+          <p style="font-size:16.5px;line-height:1.72;color:#5E6152;margin:20px 0 0;max-width:50ch">{{ t.swanDesc }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:26px">
+            <sc-for list="{{ swanFeat }}" as="f" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:9px;font-size:14px;color:#4b4e40;font-weight:500">
+                <span style="width:6px;height:6px;background:#B98A72;border-radius:50%"></span>{{ f.label }}
+              </div>
+            </sc-for>
+          </div>
+          <button class="btn" onClick="{{ swanLead.onClick }}" style="margin-top:30px;background:transparent;border:1px solid #7E876B;color:#5F6650;border-radius:100px;padding:12px 24px;font-size:13px;font-weight:700;letter-spacing:.03em;display:inline-flex;align-items:center;gap:8px">
+            {{ t.viewGallery }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Rose -->
+      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,4vw,56px);align-items:center">
+        <div style="order:2">
+          <div class="thumb ph lift" onClick="{{ roseLead.onClick }}" style="border-radius:20px;box-shadow:0 26px 60px rgba(60,60,40,.2)">
+            <img src="{{ roseLead.src }}" alt="Soba Ruža" style="width:100%;height:clamp(340px,50vh,520px);object-fit:cover">
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px">
+            <sc-for list="{{ roseThumbs }}" as="g" hint-placeholder-count="4">
+              <div class="thumb ph" onClick="{{ g.onClick }}" style="border-radius:12px;aspect-ratio:1;box-shadow:0 8px 20px rgba(60,60,40,.12)">
+                <img src="{{ g.src }}" alt="{{ g.alt }}" style="width:100%;height:100%;object-fit:cover">
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="order:1">
+          <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+            <h3 style="font-size:clamp(30px,4.4vw,50px);color:#33352B">{{ t.roseName }}</h3>
+            <span style="font-size:13px;color:#B98A72;font-weight:600;letter-spacing:.04em">{{ t.roseTag }}</span>
+          </div>
+          <p style="font-size:16.5px;line-height:1.72;color:#5E6152;margin:20px 0 0;max-width:50ch">{{ t.roseDesc }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:26px">
+            <sc-for list="{{ roseFeat }}" as="f" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:9px;font-size:14px;color:#4b4e40;font-weight:500">
+                <span style="width:6px;height:6px;background:#7E876B;border-radius:50%"></span>{{ f.label }}
+              </div>
+            </sc-for>
+          </div>
+          <button class="btn" onClick="{{ roseLead.onClick }}" style="margin-top:30px;background:transparent;border:1px solid #B98A72;color:#9c6e57;border-radius:100px;padding:12px 24px;font-size:13px;font-weight:700;letter-spacing:.03em;display:inline-flex;align-items:center;gap:8px">
+            {{ t.viewGallery }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARDEN -->
+  <section id="dvoriste" data-screen-label="Garden" style="scroll-margin-top:80px;padding:clamp(70px,11vh,150px) clamp(20px,5vw,60px);background:#F4EEE1">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(30px,5vw,70px);align-items:end;margin-bottom:52px">
+        <div class="reveal">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+            <span style="width:34px;height:1px;background:#7E876B"></span>
+            <span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#7E876B;font-weight:600">{{ t.gardenLabel }}</span>
+          </div>
+          <h2 style="font-size:clamp(36px,6vw,74px);color:#33352B;max-width:14ch">{{ t.gardenHeading }}</h2>
+        </div>
+        <p class="reveal" style="font-size:18px;line-height:1.75;color:#5E6152;max-width:56ch;font-weight:300">{{ t.gardenLead }}</p>
+      </div>
+
+      <div class="reveal masonry" style="margin-bottom:44px">
+        <sc-for list="{{ gardenThumbs }}" as="g" hint-placeholder-count="9">
+          <div class="thumb ph" onClick="{{ g.onClick }}" style="box-shadow:0 14px 34px rgba(60,60,40,.16)">
+            <img src="{{ g.src }}" alt="{{ g.alt }}" style="width:100%">
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px">
+        <sc-for list="{{ moments }}" as="m" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:14px;background:#FBF7EE;border:1px solid #EBE3D2;border-radius:14px;padding:18px 20px">
+            <svg class="icn-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4"></circle><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"></path></svg>
+            <span style="font-size:14.5px;font-weight:600;color:#4b4e40;line-height:1.3">{{ m.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVER PALIĆ -->
+  <section id="palic" data-screen-label="Palic" style="scroll-margin-top:80px;background:#2E332A;color:#F4EEE1;padding:clamp(70px,11vh,140px) clamp(20px,5vw,60px);position:relative;overflow:hidden">
+    <div style="max-width:1240px;margin:0 auto;position:relative;z-index:1">
+      <div class="reveal" style="text-align:center;max-width:660px;margin:0 auto 56px">
+        <div class="tri-col" style="width:20px;height:58px;margin:0 auto 24px;opacity:.9"></div>
+        <div class="lbl-orn" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B9A57E;font-weight:600;margin-bottom:14px">{{ t.palicLabel }}</div>
+        <h2 style="font-size:clamp(34px,5.4vw,64px);color:#F7F2E6">{{ t.palicHeading }}</h2>
+        <p style="font-size:17px;line-height:1.7;color:#C7C6B8;margin:20px 0 0">{{ t.palicSub }}</p>
+      </div>
+      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+        <sc-for list="{{ attractions }}" as="a" hint-placeholder-count="8">
+          <div class="lift" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:26px 24px">
+            <div style="width:44px;height:44px;border-radius:11px;background:rgba(185,165,126,.16);display:flex;align-items:center;justify-content:center;margin-bottom:18px">
+              <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#D8C69C;font-weight:600">{{ a.n }}</span>
+            </div>
+            <h3 style="font-size:24px;color:#F4EEE1;font-weight:600">{{ a.title }}</h3>
+            <p style="font-size:14px;line-height:1.6;color:#B4B4A6;margin:8px 0 0">{{ a.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div style="background:#F4EEE1;padding:clamp(22px,4vh,46px) clamp(20px,5vw,60px)"><div class="mdivider"><span class="msteps" style="width:245px;height:26px;flex:none"></span></div></div>
+
+  <!-- AMENITIES -->
+  <section id="sadrzaji" data-screen-label="Amenities" style="scroll-margin-top:80px;padding:clamp(70px,11vh,140px) clamp(20px,5vw,60px);background:#F4EEE1">
+    <div style="max-width:1240px;margin:0 auto">
+      <div class="reveal" style="text-align:center;margin-bottom:52px">
+        <div class="lbl-orn" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:14px">{{ t.amenLabel }}</div>
+        <h2 style="font-size:clamp(34px,5.4vw,60px);color:#33352B">{{ t.amenHeading }}</h2>
+      </div>
+      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><path d="M4.5 12a11 11 0 0 1 15 0"></path><path d="M7.5 15a7 7 0 0 1 9 0"></path><circle cx="12" cy="18.5" r="1" fill="#5F6650" stroke="none"></circle></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.wifi }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><rect x="3" y="5" width="18" height="9" rx="2"></rect><path d="M7 18h.01M12 18.5h.01M17 18h.01M7 9h4"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.ac }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><circle cx="12" cy="12" r="9"></circle><path d="M10 16.5V8h3a2.4 2.4 0 0 1 0 4.8h-3"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.parking }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><circle cx="12" cy="9" r="6"></circle><path d="M12 15v6M9 19h6"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.garden }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><path d="M12 2.5s4 3 4 7.5a4 4 0 0 1-8 0c0-2 1-3 2.5-4 .3 1.8 1.5 2 1.5 3.5"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.bbq }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><path d="M6 11V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5"></path><rect x="5" y="11" width="14" height="4" rx="1"></rect><path d="M7 15v4M17 15v4"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.seating }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M9 21h6"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.tv }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><path d="M12 3s5 5.5 5 9.5a5 5 0 0 1-10 0C7 8.5 12 3 12 3z"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.bath }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"></path><path d="M17 9h2a2 2 0 0 1 0 4h-2"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.kitchen }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><circle cx="8" cy="8" r="2.2"></circle><circle cx="16" cy="8" r="2.2"></circle><path d="M4.5 19a3.5 3.5 0 0 1 7 0M12.5 19a3.5 3.5 0 0 1 7 0"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.family }}</span>
+        </div>
+        <div style="background:#FBF7EE;border:1px solid #EBE3D2;border-radius:16px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+          <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" class="icn"><path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"></path></svg></div>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{{ am.quiet }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section data-screen-label="Reviews" style="padding:clamp(64px,10vh,130px) clamp(20px,5vw,60px);background:#EDE6D6">
+    <div style="max-width:1240px;margin:0 auto">
+      <div class="reveal" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-bottom:44px">
+        <div>
+          <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:12px">{{ t.reviewsLabel }}</div>
+          <h2 style="font-size:clamp(32px,5vw,58px);color:#33352B">{{ t.reviewsHeading }}</h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;background:#FBF7EE;border:1px solid #E4DCCB;border-radius:16px;padding:16px 22px">
+          <div style="display:flex;align-items:center;justify-content:center;width:58px;height:58px;background:#1a3a6b;color:#fff;border-radius:12px 12px 12px 3px;font-weight:800;font-size:22px">9.4</div>
+          <div>
+            <div style="font-weight:700;font-size:15px;color:#33352B">{{ t.ratingWord }} · Booking.com</div>
+            <div style="font-size:13px;color:#6E7060">{{ t.reviewsCount }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div style="background:#FBF7EE;border:1px solid #E4DCCB;border-radius:18px;padding:30px 28px">
+            <div style="color:#C9A24B;font-size:16px;letter-spacing:3px;margin-bottom:14px">★★★★★</div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.45;color:#3d3f33;font-style:italic;margin:0">“{{ r.text }}”</p>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:22px">
+              <div style="width:38px;height:38px;border-radius:50%;background:#7E876B;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">{{ r.initial }}</div>
+              <div style="line-height:1.3">
+                <div style="font-weight:700;font-size:14px;color:#33352B">{{ r.name }}</div>
+                <div style="font-size:12.5px;color:#8A8B7C">{{ r.origin }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div style="background:#F4EEE1;padding:clamp(22px,4vh,46px) clamp(20px,5vw,60px)"><div class="mdivider"><span class="msteps" style="width:245px;height:26px;flex:none"></span></div></div>
+
+  <!-- LOCATION -->
+  <section id="lokacija" data-screen-label="Location" style="scroll-margin-top:80px;padding:clamp(70px,11vh,140px) clamp(20px,5vw,60px);background:#F4EEE1">
+    <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,52px);align-items:stretch">
+      <div class="reveal" style="display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:14px">{{ t.locLabel }}</div>
+        <h2 style="font-size:clamp(34px,5vw,58px);color:#33352B">{{ t.locHeading }}</h2>
+        <p style="font-size:17px;line-height:1.7;color:#5E6152;margin:20px 0 0;max-width:44ch">{{ t.locText }}</p>
+        <div style="margin-top:28px;background:#FBF7EE;border:1px solid #E4DCCB;border-radius:16px;padding:22px 24px">
+          <div style="display:flex;align-items:flex-start;gap:14px">
+            <svg class="icn-lg" style="stroke:#B98A72;margin-top:2px" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            <div>
+              <div style="font-weight:700;font-size:16px;color:#33352B">Sobe Milica</div>
+              <div style="font-size:15px;color:#5E6152;line-height:1.6;margin-top:2px">Begejska 1/A<br>24413 Palić, Srbija</div>
+            </div>
+          </div>
+        </div>
+        <a class="btn" href="{{ directionsUrl }}" target="_blank" rel="noopener" style="margin-top:18px;align-self:flex-start;background:#7E876B;color:#fff;border-radius:100px;padding:14px 26px;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:9px;box-shadow:0 10px 26px rgba(95,102,80,.24)">
+          {{ t.locBtn }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+        </a>
+      </div>
+      <div class="reveal" style="border-radius:20px;overflow:hidden;box-shadow:0 26px 60px rgba(60,60,40,.18);border:1px solid #E4DCCB;min-height:380px">
+        <iframe title="Mapa — Palić" src="https://www.openstreetmap.org/export/embed.html?bbox=19.7300%2C46.0880%2C19.8050%2C46.1150&amp;layer=mapnik&amp;marker=46.1015%2C19.7660" style="width:100%;height:100%;min-height:380px;border:0;filter:saturate(.9)"></iframe>
+    </div>
+  </div></section>
+
+  <!-- CONTACT -->
+  <section id="kontakt" data-screen-label="Contact" style="scroll-margin-top:80px;position:relative;padding:clamp(80px,13vh,170px) clamp(20px,5vw,60px);overflow:hidden">
+    <img class="ph" src="uploads/hero-2.JPG" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,30,22,.72),rgba(28,30,22,.82))"></div>
+    <div class="reveal" style="position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center;color:#fff">
+      <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#D8C69C;font-weight:600;margin-bottom:16px">{{ t.contactLabel }}</div>
+      <h2 style="font-size:clamp(38px,6.5vw,80px);color:#fff">{{ t.contactHeading }}</h2>
+      <p style="font-size:18px;line-height:1.65;color:rgba(255,255,255,.9);margin:20px auto 0;max-width:52ch;font-weight:300">{{ t.contactSub }}</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:40px">
+        <a class="btn" href="{{ bookingUrl }}" target="_blank" rel="noopener" style="background:#1a3a6b;color:#fff;border-radius:100px;padding:16px 30px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;box-shadow:0 14px 34px rgba(0,0,0,.3)">
+          <span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;background:#fff;color:#1a3a6b;border-radius:5px;font-size:13px;font-weight:800">B.</span>
+          Booking.com · 9.4
+        </a>
+        <a class="btn" href="{{ whatsappUrl }}" target="_blank" rel="noopener" style="background:#25a35a;color:#fff;border-radius:100px;padding:16px 30px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.6 11.6 0 0 1-4.7-4.2c-.4-.5-1-1.5-1-2.9 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.6-.3.3c-.1.2-.3.3-.1.6.2.4.8 1.3 1.6 2 1 .9 1.9 1.2 2.2 1.3.3.2.5.1.7-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.2.1.8-.1 1.3z"></path></svg>
+          WhatsApp
+        </a>
+        <a class="btn" href="{{ phoneUrl }}" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(4px)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
+          060 130 4893
+        </a>
+        <a class="btn" href="{{ emailUrl }}" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(4px)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+          {{ t.contactEmail }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#242820;color:#B4B4A6;padding:52px clamp(20px,5vw,60px) 40px">
+    <div class="msteps" style="max-width:1240px;margin:0 auto 34px;height:24px;opacity:.6"></div>
+    <div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#F4EEE1;font-weight:600">Sobe Milica</div>
+        <div style="font-size:13px;letter-spacing:.06em;margin-top:6px;color:#8A8B7C">Begejska 1/A · 24413 Palić · Srbija</div>
+      </div>
+      <div style="display:flex;gap:26px;flex-wrap:wrap;font-size:13.5px">
+        <a href="#o-nama" style="text-decoration:none;color:#B4B4A6">{{ t.navAbout }}</a>
+        <a href="#sobe" style="text-decoration:none;color:#B4B4A6">{{ t.navRooms }}</a>
+        <a href="#dvoriste" style="text-decoration:none;color:#B4B4A6">{{ t.navGarden }}</a>
+        <a href="#kontakt" style="text-decoration:none;color:#B4B4A6">{{ t.navContact }}</a>
+      </div>
+    </div>
+    <div style="max-width:1240px;margin:28px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.09);font-size:12.5px;color:#71725f;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between">
+      <span>© {{ year }} Sobe Milica. {{ t.footerRights }}</span>
+      <span>{{ t.footerMade }}</span>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="lb-enter" onClick="{{ closeLb }}" style="position:fixed;inset:0;z-index:100;background:rgba(20,22,16,.94);display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,60px)">
+      <button class="btn" onClick="{{ closeLb }}" aria-label="Close" style="position:absolute;top:22px;right:22px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px">✕</button>
+      <button class="btn" onClick="{{ prevLb }}" aria-label="Prev" style="position:absolute;left:clamp(10px,3vw,40px);top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"></path></svg>
+      </button>
+      <div onClick="{{ stop }}" style="max-width:1100px;width:100%;display:flex;flex-direction:column;align-items:center;gap:16px">
+        <img class="lb-img ph" src="{{ lbSrc }}" alt="{{ lbAlt }}" style="max-width:100%;max-height:78vh;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5)">
+        <div style="display:flex;align-items:center;gap:16px;color:rgba(255,255,255,.85);font-size:13px;letter-spacing:.05em">
+          <span style="font-weight:600">{{ lbAlt }}</span>
+          <span style="opacity:.5">·</span>
+          <span>{{ lbCounter }}</span>
+        </div>
+      </div>
+      <button class="btn" onClick="{{ nextLb }}" aria-label="Next" style="position:absolute;right:clamp(10px,3vw,40px);top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"></path></svg>
+      </button>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;crossfade&quot;,&quot;sunny&quot;,&quot;overcast&quot;],&quot;default&quot;:&quot;crossfade&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;photoTreatment&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;authentic&quot;,&quot;warm&quot;],&quot;default&quot;:&quot;warm&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Photos&quot;}}">
+class Component extends DCLogic {
+  state = { lang: 'sr', nav: 'closed', scrolled: false, lb: { open:false, set:null, i:0 } };
+
+  componentDidMount() {
+    // reveal on scroll
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); this._io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    this._mount(); 
+    // scroll state for nav
+    this._onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    // failsafe reveal
+    this._t = setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in')), 2600);
+    // keyboard for lightbox
+    this._onKey = (ev) => {
+      if (!this.state.lb.open) return;
+      if (ev.key === 'Escape') this.closeLb();
+      if (ev.key === 'ArrowRight') this.nextLb();
+      if (ev.key === 'ArrowLeft') this.prevLb();
+    };
+    window.addEventListener('keydown', this._onKey);
+  }
+  componentDidUpdate() { this._mount(); }
+  _mount() {
+    if (this._io) document.querySelectorAll('.reveal:not(.is-in)').forEach(el => this._io.observe(el));
+  }
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('keydown', this._onKey);
+    clearTimeout(this._t);
+  }
+
+  toggleLang = () => this.setState({ lang: this.state.lang === 'sr' ? 'en' : 'sr' });
+  toggleNav = () => this.setState({ nav: this.state.nav === 'open' ? 'closed' : 'open' });
+  closeNav = () => { if (this.state.nav === 'open') this.setState({ nav: 'closed' }); };
+
+  openLb = (set, i) => { this.setState({ lb: { open:true, set, i } }); };
+  closeLb = () => this.setState({ lb: { ...this.state.lb, open:false } });
+  stop = (e) => { e.stopPropagation(); };
+  nextLb = () => { const g = this._gal()[this.state.lb.set]; this.setState({ lb: { ...this.state.lb, i: (this.state.lb.i + 1) % g.length } }); };
+  prevLb = () => { const g = this._gal()[this.state.lb.set]; this.setState({ lb: { ...this.state.lb, i: (this.state.lb.i - 1 + g.length) % g.length } }); };
+
+  _gal() {
+    const en = this.state.lang === 'en';
+    return {
+      swan: [
+        { src:'uploads/swan-4.JPG', alt: en?'Swan Room — bright interior':'Soba Labud — svetla soba' },
+        { src:'uploads/swan-3.jpg', alt: en?'Studio with kitchenette':'Studio sa kuhinjom' },
+        { src:'uploads/swan-1.jpg', alt: en?'Kitchen corner':'Kuhinjski kutak' },
+        { src:'uploads/swan-2.jpg', alt: en?'Cosy sleeping nook':'Prostor za spavanje' },
+        { src:'uploads/swan-5.JPG', alt: en?'Private bathroom':'Sopstveno kupatilo' },
+      ],
+      rose: [
+        { src:'uploads/rose-3.JPG', alt: en?'Kitchenette':'Čajna kuhinja' },
+        { src:'uploads/rose-5.JPG', alt: en?'Rose Room — bedroom':'Soba Ruža — spavaći deo' },
+        { src:'uploads/rose-1.JPG', alt: en?'Covered terrace facing the garden':'Natkrivena terasa ka dvorištu' },
+        { src:'uploads/rose-6.JPG', alt: en?'Extra beds for families':'Dodatni ležajevi za porodice' },
+        { src:'uploads/rose-8.JPG', alt: en?'Private bathroom':'Sopstveno kupatilo' },
+      ],
+      garden: [
+        { src:'uploads/yard-3.JPG', alt: en?'The green yard in summer':'Zeleno dvorište leti' },
+        { src:'uploads/yard-5.JPG', alt: en?'Lavender by the lawn':'Lavanda uz travnjak' },
+        { src:'uploads/yard-7.JPG', alt: en?"Children's swing under the cherry tree":'Ljuljaška pod trešnjom' },
+        { src:'uploads/yard-1.JPG', alt: en?'Gazebo, barbecue & flowers':'Senica, roštilj i cveće' },
+        { src:'uploads/rose-1.JPG', alt: en?'Coffee on the terrace':'Kafa na terasi' },
+        { src:'uploads/yard-2.JPG', alt: en?'Barbecue & outdoor dining':'Roštilj i sto za ručavanje' },
+        { src:'uploads/yard-4.JPG', alt: en?'Trampoline & swing bench':'Trambolina i ljuljaška' },
+        { src:'uploads/swan-6.jpg', alt: en?'A quiet evening with a glass of wine':'Miran predvečernji trenutak' },
+        { src:'uploads/yard-6.JPG', alt: en?'Pears from the orchard':'Kruške iz voćnjaka' },
+      ],
+    };
+  }
+
+  _L() {
+    return {
+      sr: {
+        navAbout:'O nama', navRooms:'Sobe', navGarden:'Dvorište', navContact:'Kontakt', navBook:'Rezervišite',
+        heroKicker:'Palić · Vojvodina · Srbija',
+        heroTag:'Mirno porodično prenoćište u srcu Palića — dvorište, hlad stare trešnje i topla domaćinska dobrodošlica.',
+        heroBook:'Rezervišite boravak', heroGarden:'Pogledajte dvorište',
+        ratingWord:'Izuzetno', ratingLabel:'Ocena na Booking.com',
+        aboutLabel:'O nama', aboutHeading:'Dom daleko od kuće, okružen zelenilom',
+        aboutP1:'Sobe Milica su malo porodično prenoćište u mirnom delu Palića, stvoreno za parove, porodice i putnike koji traže odmor i tišinu. Kod nas se svaki gost oseća kao deo porodice.',
+        aboutP2:'Veliko zeleno dvorište sa senovitom trešnjom, roštilj i prostor za sedenje na otvorenom pozivaju vas da usporite. Besplatan parking, a Palićko jezero i sve atrakcije udaljeni su tek nekoliko minuta.',
+        aboutStat:'udobne sobe sa sopstvenim kupatilom i pogledom na dvorište',
+        roomsLabel:'Naše sobe', roomsHeading:'Dve sobe, dva karaktera',
+        roomsSub:'Svaka soba ima sopstveno kupatilo, klima uređaj i malu kuhinju — a obe dele isto mirno dvorište.',
+        swanName:'Soba Labud', swanTag:'Za parove i male porodice',
+        swanDesc:'Svetla i udobna soba vedrog plavog tona, sa mirnom atmosferom i sopstvenom čajnom kuhinjom. Idealna za parove ili manje porodice koje žele svetao, prijatan prostor.',
+        roseName:'Soba Ruža', roseTag:'Topla i intimna',
+        roseDesc:'Ugodna i topla soba koja gleda na dvorište — mesto za opuštanje, jutarnju kafu na terasi i miran, dubok san. Intimna i domaća, baš kao stvorena za dvoje.',
+        viewGallery:'Pogledajte galeriju',
+        gardenLabel:'Dvorište', gardenHeading:'Srce Sobe Milica je napolju',
+        gardenLead:'Zamislite jutro uz kafu u hladu stare trešnje, cvrkut ptica i decu koja se bezbrižno igraju na travnjaku. Uveče — roštilj sa porodicom pod senicom, miris lavande i tišina koja leči.',
+        palicLabel:'Otkrijte Palić', palicHeading:'Jedno od najlepših mesta severne Srbije',
+        palicSub:'Palićko jezero, secesijska arhitektura i vinogradi Vojvodine — sve na dohvat ruke, a Subotica na svega nekoliko minuta.',
+        amenLabel:'Sadržaji', amenHeading:'Sve što vam treba za miran boravak',
+        reviewsLabel:'Utisci gostiju', reviewsHeading:'Gosti nas rado preporučuju', reviewsCount:'Ocena zasnovana na recenzijama gostiju',
+        locLabel:'Lokacija', locHeading:'Kako do nas',
+        locText:'Nalazimo se u mirnom delu Palića, na samo nekoliko minuta od jezera, promenade i centra Subotice. Besplatan parking u dvorištu.',
+        locBtn:'Otvorite u mapama',
+        contactLabel:'Rezervacije', contactHeading:'Rezervišite svoj mir',
+        contactSub:'Javite nam se direktno ili rezervišite preko Booking.com-a. Rado ćemo odgovoriti na sva pitanja i pomoći da isplanirate savršen odmor.',
+        contactEmail:'Pošaljite e-mail',
+        footerRights:'Sva prava zadržana.', footerMade:'Porodično prenoćište u Paliću',
+      },
+      en: {
+        navAbout:'About', navRooms:'Rooms', navGarden:'Garden', navContact:'Contact', navBook:'Book now',
+        heroKicker:'Palić · Vojvodina · Serbia',
+        heroTag:'A peaceful family guesthouse in the heart of Palić — a garden, the shade of an old tree, and warm, homely hospitality.',
+        heroBook:'Book your stay', heroGarden:'See the garden',
+        ratingWord:'Fabulous', ratingLabel:'Booking.com rating',
+        aboutLabel:'About us', aboutHeading:'A home away from home, wrapped in green',
+        aboutP1:'Sobe Milica is a small family-run guesthouse in a quiet part of Palić, made for couples, families and travellers looking for rest and calm. Here, every guest feels like part of the family.',
+        aboutP2:'A large green garden with a shady tree, a barbecue and plenty of outdoor seating invite you to slow down. Parking is free, and Lake Palić and all the local sights are just minutes away.',
+        aboutStat:'comfortable rooms with private bathroom and a view of the garden',
+        roomsLabel:'Our rooms', roomsHeading:'Two rooms, two characters',
+        roomsSub:'Each room has its own bathroom, air conditioning and a small kitchen — and both share the same peaceful garden.',
+        swanName:'Swan Room', swanTag:'For couples & small families',
+        swanDesc:'A bright, comfortable room in a fresh blue tone, with a calm atmosphere and its own kitchenette. Ideal for couples or small families who love a light, welcoming space.',
+        roseName:'Rose Room', roseTag:'Warm & intimate',
+        roseDesc:'A cosy, warm room overlooking the garden — a place to unwind, enjoy morning coffee on the terrace and sleep deeply. Intimate and homely, made for two.',
+        viewGallery:'View the gallery',
+        gardenLabel:'The Garden', gardenHeading:'The heart of Sobe Milica is outside',
+        gardenLead:'Picture a morning with coffee in the shade of an old tree, birdsong, and children playing freely on the lawn. In the evening — a barbecue with family under the gazebo, the scent of lavender and a healing quiet.',
+        palicLabel:'Discover Palić', palicHeading:'One of the loveliest places in northern Serbia',
+        palicSub:'Lake Palić, Secession-era architecture and the vineyards of Vojvodina — all within reach, with Subotica just minutes away.',
+        amenLabel:'Amenities', amenHeading:'Everything you need for a restful stay',
+        reviewsLabel:'Guest reviews', reviewsHeading:'Guests love to recommend us', reviewsCount:'Score based on guest reviews',
+        locLabel:'Location', locHeading:'Find us',
+        locText:'We are in a quiet part of Palić, just minutes from the lake, the promenade and the centre of Subotica. Free parking in the yard.',
+        locBtn:'Open in maps',
+        contactLabel:'Reservations', contactHeading:'Book your peace & quiet',
+        contactSub:'Get in touch directly or book through Booking.com. We are happy to answer any questions and help you plan the perfect break.',
+        contactEmail:'Send an e-mail',
+        footerRights:'All rights reserved.', footerMade:'A family guesthouse in Palić',
+      },
+    };
+  }
+
+  _amIcon(key) {
+    const R = React.createElement;
+    const P = (d) => R('path', { d, key: d });
+    const C = (cx, cy, r) => R('circle', { cx, cy, r, key: 'c'+cx+cy, fill: 'none' });
+    const paths = {
+      wifi: [P('M4.5 12a11 11 0 0 1 15 0'), P('M7.5 15a7 7 0 0 1 9 0'), R('circle',{cx:12,cy:18.5,r:1,fill:'#5F6650',stroke:'none',key:'d'})],
+      ac: [R('rect',{x:3,y:5,width:18,height:9,rx:2,fill:'none',key:'r'}), P('M7 18h.01'), P('M12 18.5h.01'), P('M17 18h.01'), P('M7 9h4')],
+      parking: [C(12,12,9), P('M10 16.5V8h3a2.4 2.4 0 0 1 0 4.8h-3')],
+      garden: [C(12,9,6), P('M12 15v6'), P('M9 19h6')],
+      bbq: [P('M12 2.5s4 3 4 7.5a4 4 0 0 1-8 0c0-2 1.5-3 2.5-4 .3 1.8 1.5 2 1.5 3.5')],
+      seating: [P('M6 11V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5'), R('rect',{x:5,y:11,width:14,height:4,rx:1,fill:'none',key:'s'}), P('M7 15v4'), P('M17 15v4')],
+      tv: [R('rect',{x:3,y:5,width:18,height:12,rx:2,fill:'none',key:'t'}), P('M9 21h6')],
+      bath: [P('M12 3s5 5.5 5 9.5a5 5 0 0 1-10 0C7 8.5 12 3 12 3z')],
+      kitchen: [P('M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z'), P('M17 9h2a2 2 0 0 1 0 4h-2')],
+      family: [C(8,8,2.2), C(16,8,2.2), P('M4.5 19a3.5 3.5 0 0 1 7 0'), P('M12.5 19a3.5 3.5 0 0 1 7 0')],
+      quiet: [P('M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z')],
+    };
+    return R('svg', { viewBox: '0 0 24 24', className: 'icn' }, paths[key] || []);
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = this._L()[lang];
+    const en = lang === 'en';
+    const gal = this._gal();
+    const mk = (set) => gal[set].map((g, i) => ({ ...g, onClick: () => this.openLb(set, i) }));
+    const swan = mk('swan'), rose = mk('rose'), garden = mk('garden');
+    const lb = this.state.lb;
+    const lbSet = lb.set ? gal[lb.set] : [];
+    const cur = lb.open && lbSet[lb.i] ? lbSet[lb.i] : { src:'', alt:'' };
+
+    const scrolled = this.state.scrolled;
+
+    return {
+      t, lang,
+      heroMode: this.props.heroMode ?? 'crossfade',
+      photoTreatment: this.props.photoTreatment ?? 'authentic',
+      navState: this.state.nav,
+      year: 2026,
+      langOther: en ? 'SR' : 'EN',
+      // nav appearance (transparent over hero, solid on scroll)
+      navBg: scrolled ? 'rgba(251,247,238,.9)' : 'transparent',
+      navShadow: scrolled ? '0 1px 0 rgba(90,80,50,.08)' : 'none',
+      navInk: scrolled ? '#33352B' : '#ffffff',
+      navInkSoft: scrolled ? '#8A8B7C' : 'rgba(255,255,255,.75)',
+      navBorder: scrolled ? '#D9D0BE' : 'rgba(255,255,255,.5)',
+      // links & handlers
+      toggleLang: this.toggleLang, toggleNav: this.toggleNav, closeNav: this.closeNav,
+      // urls
+      bookingUrl: 'https://www.booking.com/hotel/rs/studio-milica.sr.html',
+      directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Begejska%201A%2C%2024413%20Pali%C4%87%2C%20Srbija',
+      whatsappUrl: 'https://wa.me/381601304893',
+      phoneUrl: 'tel:+381601304893',
+      emailUrl: 'mailto:milica.gojkovic.66@gmail.com',
+      // lists
+      features: (en
+        ? ['Quiet neighbourhood','Family atmosphere','Beautiful garden','Outdoor seating','Barbecue','Free parking','Near Lake Palić']
+        : ['Mirno susedstvo','Porodična atmosfera','Prelepo dvorište','Sedenje napolju','Roštilj','Besplatan parking','Blizu jezera']
+      ).map(label => ({ label })),
+      swanFeat: (en?['Double bed','Kitchenette','Private bathroom','Air conditioning']:['Bračni krevet','Čajna kuhinja','Sopstveno kupatilo','Klima uređaj']).map(label=>({label})),
+      roseFeat: (en?['Garden view','Extra beds','Private bathroom','Air conditioning']:['Pogled na dvorište','Dodatni ležajevi','Sopstveno kupatilo','Klima uređaj']).map(label=>({label})),
+      moments: (en
+        ? ['Coffee in the shade','Barbecue & gazebo','Safe play for kids','Orchard & lavender','Evening calm','Birdsong at dawn']
+        : ['Kafa u hladu','Roštilj i senica','Bezbedna igra za decu','Voćnjak i lavanda','Večernji mir','Cvrkut ptica u zoru']
+      ).map(label => ({ label })),
+      attractions: (en ? [
+        { n:'01', title:'Lake Palić', desc:'A short stroll to the lake, its promenade and beaches.' },
+        { n:'02', title:'Cycling & walks', desc:'Tree-lined paths around the lake and through the park.' },
+        { n:'03', title:'Wineries', desc:'Family vineyards and cellars of the Subotica sands.' },
+        { n:'04', title:'Palić Zoo', desc:'One of Serbia’s oldest zoos, loved by children.' },
+        { n:'05', title:'Restaurants', desc:'Local Vojvodina cuisine and lakeside terraces.' },
+        { n:'06', title:'Wellness & spa', desc:'Thermal and wellness options a few minutes away.' },
+        { n:'07', title:'Secession architecture', desc:'The Water Tower and Grand Terrace by the lake.' },
+        { n:'08', title:'Subotica nearby', desc:'The elegant city centre is only minutes by car.' },
+      ] : [
+        { n:'01', title:'Palićko jezero', desc:'Kratka šetnja do jezera, promenade i plaža.' },
+        { n:'02', title:'Biciklizam i šetnje', desc:'Drvoredi oko jezera i staze kroz park.' },
+        { n:'03', title:'Vinarije', desc:'Porodični vinogradi i podrumi subotičke peščare.' },
+        { n:'04', title:'Zoo vrt Palić', desc:'Jedan od najstarijih u Srbiji, omiljen kod dece.' },
+        { n:'05', title:'Restorani', desc:'Vojvođanska kuhinja i riblje čarde uz jezero.' },
+        { n:'06', title:'Wellness i spa', desc:'Termalni i wellness sadržaji na par minuta.' },
+        { n:'07', title:'Secesijska arhitektura', desc:'Vodotoranj i Velika terasa na jezeru.' },
+        { n:'08', title:'Subotica na dohvat', desc:'Elegantan centar grada udaljen je svega par minuta.' },
+      ]),
+      amenities: (en
+        ? ['Free WiFi','Air conditioning','Free parking','Garden','Barbecue','Outdoor seating','TV','Private bathroom','Kitchenette','Family friendly','Quiet area']
+        : ['Besplatan WiFi','Klima uređaj','Besplatan parking','Dvorište','Roštilj','Sedenje napolju','TV','Sopstveno kupatilo','Čajna kuhinja','Za porodice','Mirna zona']
+      ).map((label) => ({ label })),
+      am: (en
+        ? { wifi:'Free WiFi', ac:'Air conditioning', parking:'Free parking', garden:'Garden', bbq:'Barbecue', seating:'Outdoor seating', tv:'TV', bath:'Private bathroom', kitchen:'Kitchenette', family:'Family friendly', quiet:'Quiet area' }
+        : { wifi:'Besplatan WiFi', ac:'Klima uređaj', parking:'Besplatan parking', garden:'Dvorište', bbq:'Roštilj', seating:'Sedenje napolju', tv:'TV', bath:'Sopstveno kupatilo', kitchen:'Čajna kuhinja', family:'Za porodice', quiet:'Mirna zona' }
+      ),
+      reviews: (en ? [
+        { text:'A little oasis of calm. The garden is magical in the morning and the hosts are so warm.', name:'Ana', origin:'Novi Sad, Serbia', initial:'A' },
+        { text:'Spotless, quiet and full of heart. Our kids loved the swing and the trampoline.', name:'Márk', origin:'Szeged, Hungary', initial:'M' },
+        { text:'The perfect base for exploring Palić and Subotica. We will absolutely return.', name:'Ivana', origin:'Beograd, Serbia', initial:'I' },
+      ] : [
+        { text:'Mala oaza mira. Bašta je ujutru čarobna, a domaćini izuzetno topli i ljubazni.', name:'Ana', origin:'Novi Sad, Srbija', initial:'A' },
+        { text:'Čisto, mirno i sa dušom. Naša deca su obožavala ljuljašku i trambolinu.', name:'Márk', origin:'Segedin, Mađarska', initial:'M' },
+        { text:'Savršena baza za obilazak Palića i Subotice. Sigurno se vraćamo.', name:'Ivana', origin:'Beograd, Srbija', initial:'I' },
+      ]),
+      // rooms
+      swanLead: swan[0], swanThumbs: swan.slice(1),
+      roseLead: rose[0], roseThumbs: rose.slice(1),
+      gardenThumbs: garden,
+      // lightbox
+      lbOpen: lb.open,
+      lbSrc: cur.src, lbAlt: cur.alt,
+      lbCounter: lb.open ? (lb.i + 1) + ' / ' + lbSet.length : '',
+      closeLb: this.closeLb, nextLb: this.nextLb, prevLb: this.prevLb, stop: this.stop,
+    };
+  }
+}
+</script>
+</body>
+</html>
