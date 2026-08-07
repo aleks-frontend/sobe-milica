@@ -40,6 +40,8 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margi
   .navlinks{position:fixed;top:0;right:0;height:100vh;width:min(78vw,340px);flex-direction:column;justify-content:center;align-items:flex-start;gap:26px!important;background:#FBF7EE;padding:40px 38px;transform:translateX(105%);transition:transform .5s cubic-bezier(.7,0,.2,1);box-shadow:-30px 0 80px rgba(40,40,30,.14);z-index:60}
   [data-nav="open"] .navlinks{transform:none}
   .navlinks .navlink{font-size:20px;color:#33352B!important}
+  [data-nav="open"] .burger-line{background:#33352B}
+  [data-nav="open"] .navlangbtn{border-color:#D9D0BE;color:#33352B}
   .burger{display:inline-flex}
   .navcta-desktop{display:none!important}
 }
