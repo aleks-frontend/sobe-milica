@@ -1,6 +1,10 @@
 ---
-import { translations, site } from '../data/content';
-const t = translations.sr;
+import { translations, site, type Lang } from '../data/content';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = translations[lang];
+const otherLang = lang === 'sr' ? 'en' : 'sr';
 ---
 
 <div class="navwrap" id="navwrap">
@@ -9,18 +13,17 @@ const t = translations.sr;
     <span class="navlogo-kicker">Palić · Vojvodina</span>
   </a>
   <nav class="navlinks">
-    <a class="navlink" href="#o-nama" data-i18n="navAbout" data-close-nav>{t.navAbout}</a>
-    <a class="navlink" href="#sobe" data-i18n="navRooms" data-close-nav>{t.navRooms}</a>
-    <a class="navlink" href="#dvoriste" data-i18n="navGarden" data-close-nav>{t.navGarden}</a>
+    <a class="navlink" href="#o-nama" data-close-nav>{t.navAbout}</a>
+    <a class="navlink" href="#sobe" data-close-nav>{t.navRooms}</a>
+    <a class="navlink" href="#dvoriste" data-close-nav>{t.navGarden}</a>
     <a class="navlink" href="#palic" data-close-nav>Palić</a>
-    <a class="navlink" href="#kontakt" data-i18n="navContact" data-close-nav>{t.navContact}</a>
-    <button class="btn navlangbtn" id="lang-toggle" type="button">EN</button>
+    <a class="navlink" href="#kontakt" data-close-nav>{t.navContact}</a>
+    <a class="btn navlangbtn" id="lang-toggle" href={`/${otherLang}/`} hreflang={otherLang}>{otherLang.toUpperCase()}</a>
     <a
       class="btn navcta-desktop"
       href={site.bookingUrl}
       target="_blank"
       rel="noopener"
-      data-i18n="navBook"
       style="background:#7E876B;color:#fff;border-radius:100px;padding:11px 22px;font-size:13px;font-weight:700;letter-spacing:.02em;box-shadow:0 8px 24px rgba(95,102,80,.28)"
     >
       {t.navBook}

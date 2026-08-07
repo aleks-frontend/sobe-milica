@@ -1,15 +1,20 @@
 ---
-import { translations, site } from '../data/content';
-const t = translations.sr;
+import { Image } from 'astro:assets';
+import { translations, site, type Lang } from '../data/content';
+import { uploadImage } from '../data/images';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <section id="kontakt" style="scroll-margin-top:80px;position:relative;padding:clamp(80px,13vh,170px) clamp(20px,5vw,60px);overflow:hidden">
-  <img class="ph" src="/uploads/hero-2.JPG" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <Image class="ph" src={uploadImage('hero-2.JPG')} alt="" widths={[800, 1400, 1920]} sizes="100vw" format="webp" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,30,22,.72),rgba(28,30,22,.82))"></div>
   <div class="reveal" style="position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center;color:#fff">
-    <div data-i18n="contactLabel" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#D8C69C;font-weight:600;margin-bottom:16px">{t.contactLabel}</div>
-    <h2 data-i18n="contactHeading" style="font-size:clamp(38px,6.5vw,80px);color:#fff">{t.contactHeading}</h2>
-    <p data-i18n="contactSub" style="font-size:18px;line-height:1.65;color:rgba(255,255,255,.9);margin:20px auto 0;max-width:52ch;font-weight:300">{t.contactSub}</p>
+    <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#D8C69C;font-weight:600;margin-bottom:16px">{t.contactLabel}</div>
+    <h2 style="font-size:clamp(38px,6.5vw,80px);color:#fff">{t.contactHeading}</h2>
+    <p style="font-size:18px;line-height:1.65;color:rgba(255,255,255,.9);margin:20px auto 0;max-width:52ch;font-weight:300">{t.contactSub}</p>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:40px">
       <a class="btn" href={site.bookingUrl} target="_blank" rel="noopener" style="background:#1a3a6b;color:#fff;border-radius:100px;padding:16px 30px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;box-shadow:0 14px 34px rgba(0,0,0,.3)">
         <span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;background:#fff;color:#1a3a6b;border-radius:5px;font-size:13px;font-weight:800">B.</span>
@@ -25,7 +30,7 @@ const t = translations.sr;
       </a>
       <a class="btn" href={site.emailUrl} style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(4px)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
-        <span data-i18n="contactEmail">{t.contactEmail}</span>
+        <span>{t.contactEmail}</span>
       </a>
     </div>
   </div>

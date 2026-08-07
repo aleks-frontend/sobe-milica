@@ -1,33 +1,36 @@
 ---
-import { translations, site } from '../data/content';
-const t = translations.sr;
+import { translations, site, type Lang } from '../data/content';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <section style="padding:clamp(64px,10vh,130px) clamp(20px,5vw,60px);background:#EDE6D6">
   <div style="max-width:1240px;margin:0 auto">
     <div class="reveal" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-bottom:44px">
       <div>
-        <div data-i18n="reviewsLabel" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:12px">{t.reviewsLabel}</div>
-        <h2 data-i18n="reviewsHeading" style="font-size:clamp(32px,5vw,58px);color:#33352B">{t.reviewsHeading}</h2>
+        <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:12px">{t.reviewsLabel}</div>
+        <h2 style="font-size:clamp(32px,5vw,58px);color:#33352B">{t.reviewsHeading}</h2>
       </div>
       <div style="display:flex;align-items:center;gap:16px;background:#FBF7EE;border:1px solid #E4DCCB;border-radius:16px;padding:16px 22px">
         <div style="display:flex;align-items:center;justify-content:center;width:58px;height:58px;background:#1a3a6b;color:#fff;border-radius:12px 12px 12px 3px;font-weight:800;font-size:22px">{site.ratingScore}</div>
         <div>
-          <div style="font-weight:700;font-size:15px;color:#33352B"><span data-i18n="ratingWord">{t.ratingWord}</span> · Booking.com</div>
-          <div data-i18n="reviewsCount" style="font-size:13px;color:#6E7060">{t.reviewsCount}</div>
+          <div style="font-weight:700;font-size:15px;color:#33352B">{t.ratingWord} · Booking.com</div>
+          <div style="font-size:13px;color:#6E7060">{t.reviewsCount}</div>
         </div>
       </div>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
-      {t.reviews.map((r, i) => (
+      {t.reviews.map((r) => (
         <div style="background:#FBF7EE;border:1px solid #E4DCCB;border-radius:18px;padding:30px 28px">
           <div style="color:#C9A24B;font-size:16px;letter-spacing:3px;margin-bottom:14px">★★★★★</div>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.45;color:#3d3f33;font-style:italic;margin:0">"<span data-i18n-group="reviews" data-i18n-index={i} data-i18n-field="text">{r.text}</span>"</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.45;color:#3d3f33;font-style:italic;margin:0">"<span>{r.text}</span>"</p>
           <div style="display:flex;align-items:center;gap:12px;margin-top:22px">
             <div style="width:38px;height:38px;border-radius:50%;background:#7E876B;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">{r.initial}</div>
             <div style="line-height:1.3">
-              <div data-i18n-group="reviews" data-i18n-index={i} data-i18n-field="name" style="font-weight:700;font-size:14px;color:#33352B">{r.name}</div>
-              <div data-i18n-group="reviews" data-i18n-index={i} data-i18n-field="origin" style="font-size:12.5px;color:#8A8B7C">{r.origin}</div>
+              <div style="font-weight:700;font-size:14px;color:#33352B">{r.name}</div>
+              <div style="font-size:12.5px;color:#8A8B7C">{r.origin}</div>
             </div>
           </div>
         </div>

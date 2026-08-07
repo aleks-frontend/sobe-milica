@@ -1,6 +1,9 @@
 ---
-import { translations } from '../data/content';
-const t = translations.sr;
+import { translations, type Lang } from '../data/content';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = translations[lang];
 
 const icons = [
   '<path d="M4.5 12a11 11 0 0 1 15 0"></path><path d="M7.5 15a7 7 0 0 1 9 0"></path><circle cx="12" cy="18.5" r="1" fill="#5F6650" stroke="none"></circle>',
@@ -20,8 +23,8 @@ const icons = [
 <section id="sadrzaji" style="scroll-margin-top:80px;padding:clamp(70px,11vh,140px) clamp(20px,5vw,60px);background:#F4EEE1">
   <div style="max-width:1240px;margin:0 auto">
     <div class="reveal" style="text-align:center;margin-bottom:52px">
-      <div class="lbl-orn" data-i18n="amenLabel" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:14px">{t.amenLabel}</div>
-      <h2 data-i18n="amenHeading" style="font-size:clamp(34px,5.4vw,60px);color:#33352B">{t.amenHeading}</h2>
+      <div class="lbl-orn" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:14px">{t.amenLabel}</div>
+      <h2 style="font-size:clamp(34px,5.4vw,60px);color:#33352B">{t.amenHeading}</h2>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
       {t.amenities.map((a, i) => (
@@ -29,7 +32,7 @@ const icons = [
           <div style="width:52px;height:52px;border-radius:13px;background:#EFE9DB;display:flex;align-items:center;justify-content:center">
             <svg viewBox="0 0 24 24" class="icn" set:html={icons[i]}></svg>
           </div>
-          <span data-i18n-group="amenities" data-i18n-index={i} style="font-size:14px;font-weight:600;color:#4b4e40">{a.label}</span>
+          <span style="font-size:14px;font-weight:600;color:#4b4e40">{a.label}</span>
         </div>
       ))}
     </div>

@@ -1,9 +1,11 @@
-import { translations, gallery, type Lang, type Dictionary } from '../data/content';
-
 type GallerySet = 'swan' | 'rose' | 'garden';
+type GalleryPhoto = { src: string; alt: string };
 
-let lang: Lang = 'sr';
 const lb = { open: false, set: null as GallerySet | null, index: 0 };
+
+const galleryData: Record<string, GalleryPhoto[]> = JSON.parse(
+  document.getElementById('gallery-data')?.textContent || '{}',
+);
 
 // ---- scroll reveal ----
 const io = new IntersectionObserver(
@@ -40,54 +42,9 @@ document.querySelectorAll('[data-close-nav]').forEach((el) => {
   el.addEventListener('click', () => document.body.setAttribute('data-nav', 'closed'));
 });
 
-// ---- i18n ----
-function applyI18n() {
-  const t = translations[lang];
-  document.documentElement.lang = lang;
-
-  document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
-    const key = el.getAttribute('data-i18n') as keyof Dictionary | null;
-    if (!key) return;
-    const val = t[key];
-    if (typeof val === 'string') el.textContent = val;
-  });
-
-  document.querySelectorAll<HTMLElement>('[data-i18n-group]').forEach((el) => {
-    const group = el.getAttribute('data-i18n-group') as keyof Dictionary | null;
-    const field = el.getAttribute('data-i18n-field');
-    const index = Number(el.getAttribute('data-i18n-index'));
-    if (!group) return;
-    const list = t[group];
-    if (!Array.isArray(list)) return;
-    const item = list[index] as Record<string, string> | undefined;
-    if (!item) return;
-    el.textContent = field ? item[field] : item.label;
-  });
-
-  const gal = gallery(lang);
-  document.querySelectorAll<HTMLElement>('[data-gallery-set]').forEach((container) => {
-    const set = container.getAttribute('data-gallery-set') as GallerySet | null;
-    const index = Number(container.getAttribute('data-gallery-index'));
-    if (!set) return;
-    const photo = gal[set]?.[index];
-    const img = container.querySelector<HTMLImageElement>('[data-gallery-alt]');
-    if (photo && img) img.alt = photo.alt;
-  });
-
-  const langBtn = document.getElementById('lang-toggle');
-  if (langBtn) langBtn.textContent = lang === 'en' ? 'SR' : 'EN';
-
-  if (lb.open) renderLightbox();
-}
-
-document.getElementById('lang-toggle')?.addEventListener('click', () => {
-  lang = lang === 'sr' ? 'en' : 'sr';
-  applyI18n();
-});
-
 // ---- lightbox ----
-function currentSetPhotos() {
-  return lb.set ? gallery(lang)[lb.set] : [];
+function currentSetPhotos(): GalleryPhoto[] {
+  return lb.set ? galleryData[lb.set] ?? [] : [];
 }
 
 function renderLightbox() {

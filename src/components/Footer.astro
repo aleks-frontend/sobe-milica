@@ -1,6 +1,9 @@
 ---
-import { translations, site } from '../data/content';
-const t = translations.sr;
+import { translations, site, type Lang } from '../data/content';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = translations[lang];
 ---
 
 <footer style="background:#242820;color:#B4B4A6;padding:52px clamp(20px,5vw,60px) 40px">
@@ -11,14 +14,14 @@ const t = translations.sr;
       <div style="font-size:13px;letter-spacing:.06em;margin-top:6px;color:#8A8B7C">{site.addressLine1} · {site.addressLine2}</div>
     </div>
     <div style="display:flex;gap:26px;flex-wrap:wrap;font-size:13.5px">
-      <a href="#o-nama" data-i18n="navAbout" style="text-decoration:none;color:#B4B4A6">{t.navAbout}</a>
-      <a href="#sobe" data-i18n="navRooms" style="text-decoration:none;color:#B4B4A6">{t.navRooms}</a>
-      <a href="#dvoriste" data-i18n="navGarden" style="text-decoration:none;color:#B4B4A6">{t.navGarden}</a>
-      <a href="#kontakt" data-i18n="navContact" style="text-decoration:none;color:#B4B4A6">{t.navContact}</a>
+      <a href="#o-nama" style="text-decoration:none;color:#B4B4A6">{t.navAbout}</a>
+      <a href="#sobe" style="text-decoration:none;color:#B4B4A6">{t.navRooms}</a>
+      <a href="#dvoriste" style="text-decoration:none;color:#B4B4A6">{t.navGarden}</a>
+      <a href="#kontakt" style="text-decoration:none;color:#B4B4A6">{t.navContact}</a>
     </div>
   </div>
   <div style="max-width:1240px;margin:28px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.09);font-size:12.5px;color:#71725f;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between">
-    <span>© {site.year} {site.brand}. <span data-i18n="footerRights">{t.footerRights}</span></span>
-    <span data-i18n="footerMade">{t.footerMade}</span>
+    <span>© {site.year} {site.brand}. {t.footerRights}</span>
+    <span>{t.footerMade}</span>
   </div>
 </footer>

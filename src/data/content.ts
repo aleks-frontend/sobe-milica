@@ -1,7 +1,7 @@
 export type Lang = 'sr' | 'en';
 
 export interface GalleryPhoto {
-  src: string;
+  file: string;
   alt: string;
 }
 
@@ -23,6 +23,8 @@ export interface Review {
 }
 
 export interface Dictionary {
+  metaTitle: string;
+  metaDescription: string;
   navAbout: string;
   navRooms: string;
   navGarden: string;
@@ -81,6 +83,8 @@ export interface Dictionary {
 
 export const translations: Record<Lang, Dictionary> = {
   sr: {
+    metaTitle: 'Soba Milica — Smeštaj u Paliću | Sobe za izdavanje blizu Subotice',
+    metaDescription: 'Soba Milica — porodično prenoćište u Paliću, Vojvodina. Udobne sobe sa sopstvenim kupatilom, veliko zeleno dvorište i besplatan parking, na par minuta od Palićkog jezera i Subotice. Pogodno i kao prenoćište na putu ka/od Mađarske.',
     navAbout: 'O nama', navRooms: 'Sobe', navGarden: 'Dvorište', navContact: 'Kontakt', navBook: 'Rezervišite',
     heroKicker: 'Palić · Vojvodina · Srbija',
     heroTag: 'Mirno porodično prenoćište u srcu Palića — dvorište, hlad stare trešnje i topla domaćinska dobrodošlica.',
@@ -132,6 +136,8 @@ export const translations: Record<Lang, Dictionary> = {
     ],
   },
   en: {
+    metaTitle: 'Soba Milica — Rooms & Accommodation in Palić, Vojvodina',
+    metaDescription: 'Soba Milica is a family-run guesthouse in Palić, Serbia — comfortable rooms with private bathrooms, a large green garden and free parking, minutes from Lake Palić and Subotica. Also a convenient overnight stop near the Hungarian border.',
     navAbout: 'About', navRooms: 'Rooms', navGarden: 'Garden', navContact: 'Contact', navBook: 'Book now',
     heroKicker: 'Palić · Vojvodina · Serbia',
     heroTag: 'A peaceful family guesthouse in the heart of Palić — a garden, the shade of an old tree, and warm, homely hospitality.',
@@ -193,29 +199,29 @@ export function gallery(lang: Lang): Record<'swan' | 'rose' | 'garden', GalleryP
   const en = lang === 'en';
   return {
     swan: [
-      { src: '/uploads/swan-4.JPG', alt: en ? 'Swan Room — bright interior' : 'Soba Labud — svetla soba' },
-      { src: '/uploads/swan-3.jpg', alt: en ? 'Studio with kitchenette' : 'Studio sa kuhinjom' },
-      { src: '/uploads/swan-1.jpg', alt: en ? 'Kitchen corner' : 'Kuhinjski kutak' },
-      { src: '/uploads/swan-2.jpg', alt: en ? 'Cosy sleeping nook' : 'Prostor za spavanje' },
-      { src: '/uploads/swan-5.JPG', alt: en ? 'Private bathroom' : 'Sopstveno kupatilo' },
+      { file: 'swan-4.JPG', alt: en ? 'Swan Room — bright interior' : 'Soba Labud — svetla soba' },
+      { file: 'swan-3.jpg', alt: en ? 'Studio with kitchenette' : 'Studio sa kuhinjom' },
+      { file: 'swan-1.jpg', alt: en ? 'Kitchen corner' : 'Kuhinjski kutak' },
+      { file: 'swan-2.jpg', alt: en ? 'Cosy sleeping nook' : 'Prostor za spavanje' },
+      { file: 'swan-5.JPG', alt: en ? 'Private bathroom' : 'Sopstveno kupatilo' },
     ],
     rose: [
-      { src: '/uploads/rose-3.JPG', alt: en ? 'Kitchenette' : 'Čajna kuhinja' },
-      { src: '/uploads/rose-5.JPG', alt: en ? 'Rose Room — bedroom' : 'Soba Ruža — spavaći deo' },
-      { src: '/uploads/rose-1.JPG', alt: en ? 'Covered terrace facing the garden' : 'Natkrivena terasa ka dvorištu' },
-      { src: '/uploads/rose-6.JPG', alt: en ? 'Extra beds for families' : 'Dodatni ležajevi za porodice' },
-      { src: '/uploads/rose-8.JPG', alt: en ? 'Private bathroom' : 'Sopstveno kupatilo' },
+      { file: 'rose-3.JPG', alt: en ? 'Kitchenette' : 'Čajna kuhinja' },
+      { file: 'rose-5.JPG', alt: en ? 'Rose Room — bedroom' : 'Soba Ruža — spavaći deo' },
+      { file: 'rose-1.JPG', alt: en ? 'Covered terrace facing the garden' : 'Natkrivena terasa ka dvorištu' },
+      { file: 'rose-6.JPG', alt: en ? 'Extra beds for families' : 'Dodatni ležajevi za porodice' },
+      { file: 'rose-8.JPG', alt: en ? 'Private bathroom' : 'Sopstveno kupatilo' },
     ],
     garden: [
-      { src: '/uploads/yard-3.JPG', alt: en ? 'The green yard in summer' : 'Zeleno dvorište leti' },
-      { src: '/uploads/yard-5.JPG', alt: en ? 'Lavender by the lawn' : 'Lavanda uz travnjak' },
-      { src: '/uploads/yard-7.JPG', alt: en ? "Children's swing under the cherry tree" : 'Ljuljaška pod trešnjom' },
-      { src: '/uploads/yard-1.JPG', alt: en ? 'Gazebo, barbecue & flowers' : 'Senica, roštilj i cveće' },
-      { src: '/uploads/rose-1.JPG', alt: en ? 'Coffee on the terrace' : 'Kafa na terasi' },
-      { src: '/uploads/yard-2.JPG', alt: en ? 'Barbecue & outdoor dining' : 'Roštilj i sto za ručavanje' },
-      { src: '/uploads/yard-4.JPG', alt: en ? 'Trampoline & swing bench' : 'Trambolina i ljuljaška' },
-      { src: '/uploads/swan-6.jpg', alt: en ? 'A quiet evening with a glass of wine' : 'Miran predvečernji trenutak' },
-      { src: '/uploads/yard-6.JPG', alt: en ? 'Pears from the orchard' : 'Kruške iz voćnjaka' },
+      { file: 'yard-3.JPG', alt: en ? 'The green yard in summer' : 'Zeleno dvorište leti' },
+      { file: 'yard-5.JPG', alt: en ? 'Lavender by the lawn' : 'Lavanda uz travnjak' },
+      { file: 'yard-7.JPG', alt: en ? "Children's swing under the cherry tree" : 'Ljuljaška pod trešnjom' },
+      { file: 'yard-1.JPG', alt: en ? 'Gazebo, barbecue & flowers' : 'Senica, roštilj i cveće' },
+      { file: 'rose-1.JPG', alt: en ? 'Coffee on the terrace' : 'Kafa na terasi' },
+      { file: 'yard-2.JPG', alt: en ? 'Barbecue & outdoor dining' : 'Roštilj i sto za ručavanje' },
+      { file: 'yard-4.JPG', alt: en ? 'Trampoline & swing bench' : 'Trambolina i ljuljaška' },
+      { file: 'swan-6.jpg', alt: en ? 'A quiet evening with a glass of wine' : 'Miran predvečernji trenutak' },
+      { file: 'yard-6.JPG', alt: en ? 'Pears from the orchard' : 'Kruške iz voćnjaka' },
     ],
   };
 }
@@ -233,6 +239,7 @@ export const site = {
   emailUrl: 'mailto:milica.gojkovic.66@gmail.com',
   // Begejska 1, Palić — the end of the street closest to the railway station (verified via Nominatim/Overpass geocoding).
   mapEmbedUrl: 'https://www.openstreetmap.org/export/embed.html?bbox=19.7309%2C46.0908%2C19.8059%2C46.1178&layer=mapnik&marker=46.1043%2C19.7684',
+  geo: { lat: 46.1043186, lng: 19.7684106 },
   ratingScore: '9.4',
   year: new Date().getFullYear(),
 };

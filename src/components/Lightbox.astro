@@ -1,3 +1,8 @@
+---
+interface Props { galleryData: Record<string, { src: string; alt: string }[]> }
+const { galleryData } = Astro.props;
+---
+
 <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(20,22,16,.94);align-items:center;justify-content:center;padding:clamp(16px,4vw,60px)">
   <button class="btn" id="lb-close" aria-label="Close" style="position:absolute;top:22px;right:22px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px">✕</button>
   <button class="btn" id="lb-prev" aria-label="Prev" style="position:absolute;left:clamp(10px,3vw,40px);top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;display:flex;align-items:center;justify-content:center">
@@ -15,3 +20,4 @@
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"></path></svg>
   </button>
 </div>
+<script type="application/json" id="gallery-data" set:html={JSON.stringify(galleryData)} />

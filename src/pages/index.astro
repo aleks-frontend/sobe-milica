@@ -1,35 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Rooms from '../components/Rooms.astro';
-import Garden from '../components/Garden.astro';
-import DiscoverPalic from '../components/DiscoverPalic.astro';
-import Amenities from '../components/Amenities.astro';
-import Reviews from '../components/Reviews.astro';
-import LocationSection from '../components/LocationSection.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-import Lightbox from '../components/Lightbox.astro';
+// Fallback for static hosts that don't process public/_redirects (e.g. `astro preview`
+// or a host other than Cloudflare Pages). On Cloudflare Pages, public/_redirects issues
+// a real 302 before this page is ever served.
 ---
 
-<Layout
-  title="Soba Milica — Palić, Vojvodina | Sobe za izdavanje"
-  description="Porodično prenoćište Soba Milica u Paliću — dve udobne sobe, veliko zeleno dvorište i topla domaćinska dobrodošlica, na par minuta od jezera i Subotice."
->
-  <div style="position:relative;background:#F4EEE1;overflow-x:hidden">
-    <Nav />
-    <Hero />
-    <About />
-    <Rooms />
-    <Garden />
-    <DiscoverPalic />
-    <Amenities />
-    <Reviews />
-    <LocationSection />
-    <Contact />
-    <Footer />
-    <Lightbox />
-  </div>
-</Layout>
+<!doctype html>
+<html lang="sr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=/sr/" />
+    <link rel="canonical" href="https://sobamilica.com/sr/" />
+    <title>Soba Milica</title>
+  </head>
+  <body>
+    <p>Preusmeravamo vas na <a href="/sr/">sobamilica.com/sr/</a>…</p>
+  </body>
+</html>
