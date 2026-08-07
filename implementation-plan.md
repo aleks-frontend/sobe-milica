@@ -85,3 +85,10 @@ Not yet decided — the current design only has link-out CTAs (Booking.com, What
 
 - [ ] Decide with the user whether an on-site contact form is needed at all
 - [ ] If yes, scope the simplest option that fits (e.g. a static-site-friendly form service) rather than building custom backend infrastructure for a single contact form
+
+## Phase 8 — "Powered By" Footer Credit (lowest priority, open question)
+
+Idea, not a decision — revisit later. The user (who built this site for their mom) wants a small footer credit linking to their own site or LinkedIn. Blocker: `aleksthecoder.com` is currently just a coming-soon placeholder, no real site to link to yet.
+
+- [ ] Decide what the credit actually links to for now — LinkedIn in the meantime, `aleksthecoder.com` once it's real, or hold off entirely until then
+- [ ] If added, keep it small/unobtrusive in the footer — this is the guesthouse's site, not a portfolio piece
