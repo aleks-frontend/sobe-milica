@@ -35,10 +35,10 @@ No project-specific run skill existed yet for this repo (checked, per the `run` 
 
 ## Phase 2 — Custom Domain
 
-- [ ] Decide/confirm the domain name (likely something close to "sobamilica", TBD with the user)
-- [ ] Register on GoDaddy (existing registrar)
-- [ ] Point DNS at the Phase 1 static host
-- [ ] Confirm HTTPS auto-provisions correctly
+- [x] Decide/confirm the domain name — `sobamilica.com`, matching the "Soba Milica" brand decision. Also checked `sobamilica.rs` as a defensive registration (see Phase 8-adjacent note below): available per RNIDS whois, but GoDaddy doesn't support `.rs` directly — deferred, not blocking anything
+- [x] Register on GoDaddy — done by the user, including GoDaddy's paid "Full Domain Protection" add-on (2FA-gated transfer/deletion protection, £0.67/mo)
+- [x] Point DNS at the Phase 1 static host — domain connected to Cloudflare (Websites → Connect a domain, Free plan; nameservers switched at GoDaddy from `ns09/ns10.domaincontrol.com` to `adel.ns.cloudflare.com`/`dean.ns.cloudflare.com`, propagated within minutes). Both `sobamilica.com` and `www.sobamilica.com` added as custom domains on the `soba-milica` Pages project — apex via a `CNAME sobamilica.com → soba-milica.pages.dev` (Cloudflare's CNAME-flattening handles the apex case), `www` via the pre-existing imported `www CNAME → sobamilica.com` record, once explicitly registered as a second custom domain on the Pages project (Pages doesn't route a hostname just because DNS resolves to it — it has to be registered, learned this when `www` 522'd until added). The two leftover GoDaddy parking-page `A` records were deleted since they'd have conflicted with the new apex CNAME
+- [x] Confirm HTTPS auto-provisions correctly — confirmed both `https://sobamilica.com` and `https://www.sobamilica.com` serve the real site with valid SSL (`http://` apex 301-redirects to `https://`)
 - [ ] Quick manual cross-browser/mobile pass on the real domain
 
 ## Phase 3 — SEO Foundation
