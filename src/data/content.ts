@@ -111,8 +111,8 @@ export const translations: Record<Lang, Dictionary> = {
     contactEmail: 'Pošaljite e-mail',
     footerRights: 'Sva prava zadržana.', footerMade: 'Porodično prenoćište u Paliću',
     features: ['Mirno susedstvo', 'Porodična atmosfera', 'Prelepo dvorište', 'Sedenje napolju', 'Roštilj', 'Besplatan parking', 'Blizu jezera'].map(label => ({ label })),
-    swanFeat: ['Bračni krevet', 'Čajna kuhinja', 'Sopstveno kupatilo', 'Klima uređaj'].map(label => ({ label })),
-    roseFeat: ['Pogled na dvorište', 'Dodatni ležajevi', 'Sopstveno kupatilo', 'Klima uređaj'].map(label => ({ label })),
+    swanFeat: ['Bračni krevet', 'Pomoćni ležaj', 'Čajna kuhinja', 'Sopstveno kupatilo', 'Klima uređaj'].map(label => ({ label })),
+    roseFeat: ['Bračni krevet', 'Pomoćni ležaj', 'Pogled na dvorište', 'Sopstveno kupatilo', 'Klima uređaj'].map(label => ({ label })),
     moments: ['Kafa u hladu', 'Roštilj i senica', 'Bezbedna igra za decu', 'Voćnjak i lavanda', 'Večernji mir', 'Cvrkut ptica u zoru'].map(label => ({ label })),
     attractions: [
       { n: '01', title: 'Palićko jezero', desc: 'Kratka šetnja do jezera, promenade i plaža.' },
@@ -162,8 +162,8 @@ export const translations: Record<Lang, Dictionary> = {
     contactEmail: 'Send an e-mail',
     footerRights: 'All rights reserved.', footerMade: 'A family guesthouse in Palić',
     features: ['Quiet neighbourhood', 'Family atmosphere', 'Beautiful garden', 'Outdoor seating', 'Barbecue', 'Free parking', 'Near Lake Palić'].map(label => ({ label })),
-    swanFeat: ['Double bed', 'Kitchenette', 'Private bathroom', 'Air conditioning'].map(label => ({ label })),
-    roseFeat: ['Garden view', 'Extra beds', 'Private bathroom', 'Air conditioning'].map(label => ({ label })),
+    swanFeat: ['Double bed', 'Extra bed', 'Kitchenette', 'Private bathroom', 'Air conditioning'].map(label => ({ label })),
+    roseFeat: ['Double bed', 'Extra bed', 'Garden view', 'Private bathroom', 'Air conditioning'].map(label => ({ label })),
     moments: ['Coffee in the shade', 'Barbecue & gazebo', 'Safe play for kids', 'Orchard & lavender', 'Evening calm', 'Birdsong at dawn'].map(label => ({ label })),
     attractions: [
       { n: '01', title: 'Lake Palić', desc: 'A short stroll to the lake, its promenade and beaches.' },
