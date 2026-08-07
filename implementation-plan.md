@@ -31,7 +31,7 @@ Goal: a real URL to share, as close to the design reference as possible, without
 
 No project-specific run skill existed yet for this repo (checked, per the `run` skill's own instructions) — worth generating one (`/run-skill-generator`) once the dev workflow stabilizes, since this session had to install Playwright + write a one-off driver script from scratch to verify the port visually.
 
-- [ ] Connect the Cloudflare Pages project to the `aleks-frontend/sobe-milica` GitHub repo for auto-deploy on push to `main` — needs interactive GitHub App authorization in the Cloudflare dashboard (Workers & Pages → `soba-milica` → Settings → Builds & deployments), so this is a manual step for the user, not something doable via Wrangler CLI. Build command `npm run build`, output directory `dist`. Until this is done, every change needs a manual `wrangler pages deploy dist --project-name=soba-milica --branch=main`.
+- [x] Connect the Cloudflare Pages project to the `aleks-frontend/sobe-milica` GitHub repo for auto-deploy on push to `main` — done by the user directly in the Cloudflare dashboard (GitHub App authorization isn't scriptable). Pushes to `main` now trigger a Cloudflare-side build (`npm run build` → `dist`) automatically; the manual `wrangler pages deploy` step from earlier in this phase is no longer needed going forward.
 
 ## Phase 2 — Custom Domain
 
