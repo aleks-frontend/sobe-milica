@@ -60,6 +60,7 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margi
 @media(max-width:900px){.masonry{column-count:2}}
 @media(max-width:560px){.masonry{column-count:1}}
 .masonry .thumb{width:100%;margin:0 0 16px;break-inside:avoid;border-radius:14px}
+.masonry .thumb img{aspect-ratio:3/2;object-fit:cover;width:100%;height:auto}
 
 /* lightbox */
 .lb-enter{animation:lbIn .35s ease both}
