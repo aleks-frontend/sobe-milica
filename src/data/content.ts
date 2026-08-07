@@ -231,7 +231,8 @@ export const site = {
   phoneUrl: 'tel:+381601304893',
   phoneDisplay: '060 130 4893',
   emailUrl: 'mailto:milica.gojkovic.66@gmail.com',
-  mapEmbedUrl: 'https://www.openstreetmap.org/export/embed.html?bbox=19.7300%2C46.0880%2C19.8050%2C46.1150&layer=mapnik&marker=46.1015%2C19.7660',
+  // Begejska 1, Palić — the end of the street closest to the railway station (verified via Nominatim/Overpass geocoding).
+  mapEmbedUrl: 'https://www.openstreetmap.org/export/embed.html?bbox=19.7309%2C46.0908%2C19.8059%2C46.1178&layer=mapnik&marker=46.1043%2C19.7684',
   ratingScore: '9.4',
   year: new Date().getFullYear(),
 };
