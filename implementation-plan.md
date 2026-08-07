@@ -50,7 +50,7 @@ Not needed for the birthday demo, but the actual point of the project — do thi
 - [ ] Add `LocalBusiness`/`LodgingBusiness` JSON-LD structured data (name, address, phone, geo coordinates, photos, price range) — NAP fields must exactly match whatever comes out of Phase 4's GBP cleanup, not be decided independently
 - [ ] Generate `sitemap.xml` and `robots.txt` (Astro's sitemap integration)
 - [ ] Tune meta titles/descriptions and Open Graph tags per page/locale around the actual target queries ("Palić smeštaj", "Palić sobe", "Palić accommodation", border-crossing-overnight-stay angle for Hungary-crossing travelers)
-- [ ] Favicon / app icons
+- [x] Favicon / app icons — real branded set from the design handoff zip (`favicon-set/`: 16/32/48/192/512px PNGs + `apple-touch-icon.png`, the dark-sage merlon+"M" mark) swapped in for the `create-astro` placeholder SVG. No `.ico` was included in the handoff, so one was hand-built (multi-res PNG-in-ICO container, 16/32/48px) since browsers still request `/favicon.ico` as a fallback regardless of `<link>` tags. `Layout.astro` now links all sizes plus `apple-touch-icon`.
 - [ ] Run Lighthouse once the above lands; fix anything materially hurting Core Web Vitals
 
 ## Phase 4 — Google Business Profile & NAP Consolidation
