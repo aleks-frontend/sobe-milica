@@ -1,0 +1,87 @@
+---
+import { translations, gallery } from '../data/content';
+const t = translations.sr;
+const gal = gallery('sr');
+const swanLead = gal.swan[0];
+const swanThumbs = gal.swan.slice(1);
+const roseLead = gal.rose[0];
+const roseThumbs = gal.rose.slice(1);
+---
+
+<section id="sobe" style="scroll-margin-top:80px;background:#EDE6D6;padding:clamp(70px,11vh,140px) clamp(20px,5vw,60px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 56px">
+      <div class="lbl-orn" data-i18n="roomsLabel" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#B98A72;font-weight:600;margin-bottom:14px">{t.roomsLabel}</div>
+      <h2 data-i18n="roomsHeading" style="font-size:clamp(34px,5.4vw,64px);color:#33352B">{t.roomsHeading}</h2>
+      <p data-i18n="roomsSub" style="font-size:17px;line-height:1.7;color:#5E6152;margin:20px 0 0">{t.roomsSub}</p>
+    </div>
+
+    <!-- Swan -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,4vw,56px);align-items:center;margin-bottom:clamp(50px,8vh,96px)">
+      <div>
+        <div class="thumb ph lift" data-gallery-set="swan" data-gallery-index="0" style="border-radius:20px;box-shadow:0 26px 60px rgba(60,60,40,.2)">
+          <img src={swanLead.src} alt={swanLead.alt} data-gallery-alt style="width:100%;height:clamp(340px,50vh,520px);object-fit:cover">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px">
+          {swanThumbs.map((g, i) => (
+            <div class="thumb ph" data-gallery-set="swan" data-gallery-index={i + 1} style="border-radius:12px;aspect-ratio:1;box-shadow:0 8px 20px rgba(60,60,40,.12)">
+              <img src={g.src} alt={g.alt} data-gallery-alt style="width:100%;height:100%;object-fit:cover">
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+          <h3 data-i18n="swanName" style="font-size:clamp(30px,4.4vw,50px);color:#33352B">{t.swanName}</h3>
+          <span data-i18n="swanTag" style="font-size:13px;color:#7E876B;font-weight:600;letter-spacing:.04em">{t.swanTag}</span>
+        </div>
+        <p data-i18n="swanDesc" style="font-size:16.5px;line-height:1.72;color:#5E6152;margin:20px 0 0;max-width:50ch">{t.swanDesc}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:26px">
+          {t.swanFeat.map((f, i) => (
+            <div style="display:flex;align-items:center;gap:9px;font-size:14px;color:#4b4e40;font-weight:500">
+              <span style="width:6px;height:6px;background:#B98A72;border-radius:50%"></span><span data-i18n-group="swanFeat" data-i18n-index={i}>{f.label}</span>
+            </div>
+          ))}
+        </div>
+        <button class="btn" data-gallery-set="swan" data-gallery-index="0" style="margin-top:30px;background:transparent;border:1px solid #7E876B;color:#5F6650;border-radius:100px;padding:12px 24px;font-size:13px;font-weight:700;letter-spacing:.03em;display:inline-flex;align-items:center;gap:8px">
+          <span data-i18n="viewGallery">{t.viewGallery}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Rose -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,4vw,56px);align-items:center">
+      <div style="order:2">
+        <div class="thumb ph lift" data-gallery-set="rose" data-gallery-index="0" style="border-radius:20px;box-shadow:0 26px 60px rgba(60,60,40,.2)">
+          <img src={roseLead.src} alt={roseLead.alt} data-gallery-alt style="width:100%;height:clamp(340px,50vh,520px);object-fit:cover">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px">
+          {roseThumbs.map((g, i) => (
+            <div class="thumb ph" data-gallery-set="rose" data-gallery-index={i + 1} style="border-radius:12px;aspect-ratio:1;box-shadow:0 8px 20px rgba(60,60,40,.12)">
+              <img src={g.src} alt={g.alt} data-gallery-alt style="width:100%;height:100%;object-fit:cover">
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style="order:1">
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+          <h3 data-i18n="roseName" style="font-size:clamp(30px,4.4vw,50px);color:#33352B">{t.roseName}</h3>
+          <span data-i18n="roseTag" style="font-size:13px;color:#B98A72;font-weight:600;letter-spacing:.04em">{t.roseTag}</span>
+        </div>
+        <p data-i18n="roseDesc" style="font-size:16.5px;line-height:1.72;color:#5E6152;margin:20px 0 0;max-width:50ch">{t.roseDesc}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:26px">
+          {t.roseFeat.map((f, i) => (
+            <div style="display:flex;align-items:center;gap:9px;font-size:14px;color:#4b4e40;font-weight:500">
+              <span style="width:6px;height:6px;background:#7E876B;border-radius:50%"></span><span data-i18n-group="roseFeat" data-i18n-index={i}>{f.label}</span>
+            </div>
+          ))}
+        </div>
+        <button class="btn" data-gallery-set="rose" data-gallery-index="0" style="margin-top:30px;background:transparent;border:1px solid #B98A72;color:#9c6e57;border-radius:100px;padding:12px 24px;font-size:13px;font-weight:700;letter-spacing:.03em;display:inline-flex;align-items:center;gap:8px">
+          <span data-i18n="viewGallery">{t.viewGallery}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
