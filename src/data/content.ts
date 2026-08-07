@@ -83,8 +83,8 @@ export interface Dictionary {
 
 export const translations: Record<Lang, Dictionary> = {
   sr: {
-    metaTitle: 'Soba Milica — Smeštaj u Paliću | Sobe za izdavanje blizu Subotice',
-    metaDescription: 'Soba Milica — porodično prenoćište u Paliću, Vojvodina. Udobne sobe sa sopstvenim kupatilom, veliko zeleno dvorište i besplatan parking, na par minuta od Palićkog jezera i Subotice. Pogodno i kao prenoćište na putu ka/od Mađarske.',
+    metaTitle: 'Soba Milica — Smeštaj na Paliću | Sobe za izdavanje blizu Subotice',
+    metaDescription: 'Soba Milica — porodično prenoćište na Paliću, Vojvodina. Udobne sobe sa sopstvenim kupatilom, veliko zeleno dvorište i besplatan parking, na par minuta od Palićkog jezera i Subotice. Pogodno i kao prenoćište na putu ka/od Mađarske.',
     navAbout: 'O nama', navRooms: 'Sobe', navGarden: 'Dvorište', navContact: 'Kontakt', navBook: 'Rezervišite',
     heroKicker: 'Palić · Vojvodina · Srbija',
     heroTag: 'Mirno porodično prenoćište u srcu Palića — dvorište, hlad stare trešnje i topla domaćinska dobrodošlica.',
@@ -113,7 +113,7 @@ export const translations: Record<Lang, Dictionary> = {
     contactLabel: 'Rezervacije', contactHeading: 'Rezervišite svoj mir',
     contactSub: 'Javite nam se direktno ili rezervišite preko Booking.com-a. Rado ćemo odgovoriti na sva pitanja i pomoći da isplanirate savršen odmor.',
     contactEmail: 'Pošaljite e-mail',
-    footerRights: 'Sva prava zadržana.', footerMade: 'Porodično prenoćište u Paliću',
+    footerRights: 'Sva prava zadržana.', footerMade: 'Porodično prenoćište na Paliću',
     features: ['Mirno susedstvo', 'Porodična atmosfera', 'Prelepo dvorište', 'Sedenje napolju', 'Roštilj', 'Besplatan parking', 'Blizu jezera'].map(label => ({ label })),
     swanFeat: ['Bračni krevet', 'Pomoćni ležaj', 'Čajna kuhinja', 'Sopstveno kupatilo', 'Klima uređaj'].map(label => ({ label })),
     roseFeat: ['Bračni krevet', 'Pomoćni ležaj', 'Pogled na dvorište', 'Sopstveno kupatilo', 'Klima uređaj'].map(label => ({ label })),
