@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { translations, site, type Lang } from '../data/content';
 import { uploadImage } from '../data/images';
 
@@ -13,19 +13,24 @@ const tripPhotos = [
   { file: 'rose-1.JPG', alt: en ? 'Covered terrace facing the garden' : 'Natkrivena terasa ka dvorištu' },
   { file: 'yard-7.JPG', alt: en ? "Children's swing under the cherry tree" : 'Ljuljaška pod trešnjom' },
 ];
+
+// Mobile-only full-bleed hero background — loaded as a real CSS background-image (not <Image>)
+// gated inside a @media block, so browsers never fetch it on desktop and never fetch the
+// (hidden) triptych photos on mobile.
+const mobileBg = await getImage({ src: uploadImage('yard-7.JPG'), width: 1280, format: 'webp' });
 ---
 
 <section id="pocetak" style="position:relative;background:#2A2E25;overflow:hidden">
   <div class="msteps msteps-l" style="position:relative;z-index:2;margin-top:clamp(84px,11vh,104px);height:24px;opacity:.7"></div>
 
-  <div style="position:relative;z-index:2;text-align:center;padding:clamp(30px,5vh,54px) clamp(20px,5vw,60px) 8px;color:#fff">
-    <div class="lbl-orn" style="color:#C9B78C;letter-spacing:.34em;text-transform:uppercase;font-size:11px;font-weight:600">{t.heroKicker}</div>
-    <h1 style="font-size:clamp(56px,9vw,128px);font-weight:600;letter-spacing:-.01em;color:#F7F2E6;margin-top:18px">{site.brand}</h1>
-    <p style="max-width:56ch;font-size:clamp(16px,2vw,20px);line-height:1.55;margin:18px auto 0;color:#F4EEE1;opacity:.82;font-weight:300">{t.heroTag}</p>
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px;margin-top:32px">
-      <a class="btn" href={site.bookingUrl} target="_blank" rel="noopener" style="background:#F4EEE1;color:#2A2E25;border-radius:100px;padding:16px 32px;font-size:15px;font-weight:700;letter-spacing:.01em;box-shadow:0 14px 40px rgba(0,0,0,.28)">{t.heroBook}</a>
-      <a class="btn" href="#dvoriste" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px)">{t.heroGarden}</a>
-      <div style="display:flex;align-items:center;gap:12px;padding-left:6px">
+  <div class="hero-content" style="position:relative;z-index:2;text-align:center;padding:clamp(30px,5vh,54px) clamp(20px,5vw,60px) 8px;color:#fff">
+    <div class="lbl-orn hero-kicker" style="color:#C9B78C;letter-spacing:.34em;text-transform:uppercase;font-size:11px;font-weight:600">{t.heroKicker}</div>
+    <h1 class="hero-title" style="font-size:clamp(56px,9vw,128px);font-weight:600;letter-spacing:-.01em;color:#F7F2E6;margin-top:18px">{site.brand}</h1>
+    <p class="hero-tag-text" style="max-width:56ch;font-size:clamp(16px,2vw,20px);line-height:1.55;margin:18px auto 0;color:#F4EEE1;opacity:.82;font-weight:300">{t.heroTag}</p>
+    <div class="hero-cta-row" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px;margin-top:32px">
+      <a class="btn hero-btn" href={site.bookingUrl} target="_blank" rel="noopener" style="background:#F4EEE1;color:#2A2E25;border-radius:100px;padding:16px 32px;font-size:15px;font-weight:700;letter-spacing:.01em;box-shadow:0 14px 40px rgba(0,0,0,.28)">{t.heroBook}</a>
+      <a class="btn hero-btn" href="#dvoriste" style="background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;backdrop-filter:blur(4px)">{t.heroGarden}</a>
+      <div class="hero-rating-badge" style="display:flex;align-items:center;gap:12px;padding-left:6px">
         <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;background:#1a3a6b;color:#fff;border-radius:12px 12px 12px 3px;font-family:'Mulish';font-weight:800;font-size:19px;box-shadow:0 8px 22px rgba(0,0,0,.25)">{site.ratingScore}</div>
         <div style="line-height:1.2;text-align:left">
           <div style="font-weight:700;font-size:14px;color:#fff">{t.ratingWord}</div>
@@ -33,13 +38,24 @@ const tripPhotos = [
         </div>
       </div>
     </div>
+    <div class="hero-rating-compact">{site.ratingScore} {t.ratingWord} · Booking.com</div>
   </div>
 
   <div class="hero-trip" style="position:relative;z-index:2;max-width:1240px;margin:clamp(26px,4vh,40px) auto 0;padding:0 clamp(14px,4vw,40px) clamp(30px,5vh,46px)">
     {tripPhotos.map((p) => (
       <div class="ph" style="border-radius:16px;overflow:hidden;box-shadow:0 20px 44px rgba(0,0,0,.28)">
-        <Image class="kb" src={uploadImage(p.file)} alt={p.alt} widths={[400, 700, 1000]} sizes="(max-width: 640px) 33vw, 420px" format="webp" loading="eager" fetchpriority="high" style="width:100%;height:100%;object-fit:cover" />
+        <Image class="kb" src={uploadImage(p.file)} alt={p.alt} widths={[400, 700, 1000]} sizes="(max-width: 640px) 1px, 420px" format="webp" style="width:100%;height:100%;object-fit:cover" />
       </div>
     ))}
   </div>
 </section>
+
+<style define:vars={{ heroMobileBg: `url(${mobileBg.src})` }}>
+  @media (max-width: 640px) {
+    #pocetak {
+      background-image: linear-gradient(180deg, rgba(28, 30, 22, 0.55), rgba(28, 30, 22, 0.88)), var(--heroMobileBg) !important;
+      background-size: cover !important;
+      background-position: center !important;
+    }
+  }
+</style>
