@@ -69,6 +69,7 @@ Blocked on the user getting GBP access from their mother. Runs in parallel with 
 - [ ] "Discover Palić" detail page(s) — expand beyond the homepage's 8-card summary into real long-tail-SEO content (e.g. individual pages or sections per attraction: Lake Palić, cycling, wineries, Secession architecture)
 - [ ] "Discover Subotica" content — new, not in the original design handoff; scope with the user (own page vs. folded into the Palić content)
 - [ ] Seasonal offers section/page
+- [ ] **Upcoming local events section** (e.g. Palić Film Festival, Berbanski dani, Prvi maj) — homepage section (or small standalone page per event) announcing what's coming up, brief description of the event, and a "book early" nudge toward the Booking.com/WhatsApp CTAs. SEO rationale: not chasing Google's generic "freshness" signal (weak for a static brochure site) but targeting high-intent, low-competition seasonal long-tail queries people only search right before each event ("smeštaj za vreme Palićkog filmskog festivala," "gde odsesti Berbanski dani Subotica") — few competing guesthouses bother targeting these directly. Should carry `Event` JSON-LD structured data per event (name/startDate/endDate/location), not just prose, since that's what can actually earn rich-result visibility. Content has no CMS (per root `CLAUDE.md`, everything lives in `content.ts`), so this needs someone to manually rotate entries each season — worth deciding whether that's an acceptable recurring chore or whether it's worth a lighter structured-list format (dates/name/blurb fields to swap) rather than free-form prose rewritten every time
 - [ ] Revisit whether Swan/Rose rooms deserve their own dedicated pages for SEO once there's more to say about each, vs. staying as homepage sections
 
 ## Phase 6 — Live Booking.com Reviews Widget
@@ -85,6 +86,7 @@ Not yet decided — the current design only has link-out CTAs (Booking.com, What
 
 - [ ] Decide with the user whether an on-site contact form is needed at all
 - [ ] If yes, scope the simplest option that fits (e.g. a static-site-friendly form service) rather than building custom backend infrastructure for a single contact form
+- [ ] Add a **Viber** CTA alongside the existing WhatsApp link — Viber is more widely used than WhatsApp for personal/business messaging within Serbia, so domestic guests are more likely to reach out that way even though WhatsApp covers international guests better. Same link-out pattern as WhatsApp (`viber://chat?number=...` deep link / `https://invite.viber.com/...` fallback for desktop), same button treatment, placed next to it in the Contact section
 
 ## Phase 8 — "Powered By" Footer Credit (lowest priority, open question)
 
@@ -92,3 +94,39 @@ Idea, not a decision — revisit later. The user (who built this site for their 
 
 - [ ] Decide what the credit actually links to for now — LinkedIn in the meantime, `aleksthecoder.com` once it's real, or hold off entirely until then
 - [ ] If added, keep it small/unobtrusive in the footer — this is the guesthouse's site, not a portfolio piece
+
+---
+
+## Tijana feedback batch 1 (temporary — delete this section once addressed)
+
+Sourced from a Google Doc review pass on the live site (25 numbered notes, #4/#14 merged as duplicates). Not part of the phased plan above — tracked here as a flat checklist so it's easy to delete once worked through.
+
+### Website
+
+- [ ] Add "Pogledajte sobe" nav link next to "Pogledajte dvorište"
+- [ ] Add language flag icons to the sr/en toggle
+- [ ] Move the location map higher on the page (e.g. below the hero, not just at the bottom) — address is important info, per Booking.com's placement
+- [ ] Clarify driving distance vs. walking distance in location copy — emphasize "a few minutes by car"; current wording risks implying a short walk from central Subotica, and reviews mention 10–15 min on foot
+- [ ] Add specific kitchen/bathroom amenity details (towels, hair dryer, cookware) or at least wording like "fully equipped" — "čajna kuhinja" alone is too vague
+- [ ] Make the Booking.com rating badge (9.4 "Izuzetno") clickable, linking to reviews on Booking.com
+- [ ] Add room photos to the hero section, not just yard photos
+- [ ] Add bed dimensions to room details (a review mentioned a narrow double bed)
+- [ ] Add missing "kitchen" amenity tag to Soba Ruža (Rose) — a photo appears to show one
+- [ ] Fix the sparse/empty second row of amenity icons — add more items or consolidate to one row
+- [ ] Improve the gallery slideshow transition — current effect feels too jarring/clicky
+- [ ] Change the dvorište nav/section icon to something more fitting (e.g. a tree)
+- [ ] Fix "send email" contact link not working on desktop (confirmed working on mobile)
+- [ ] Add photos of Palić/the area to the Discover Palić section
+- [ ] Add more amenity/attraction items — swing, trampoline, dog — mentioned in reviews, appeal to families with kids
+- [ ] Add +381 country code to the displayed phone number
+- [ ] Match the gallery dot-indicator color to the "Pogledajte galeriju" link text color
+- [ ] Review whether identical icons across one section are intentional
+- [ ] Fix a clipped/cut-off arrow icon
+
+### Mobile
+
+- [ ] Top-align nav/drawer menu text instead of vertically centering it
+- [ ] Add a back arrow in the gallery/lightbox on mobile (only forward exists currently)
+- [ ] Reorder Soba Labud (Swan) section on mobile — text before photos (desktop's photos-left/text-right layout doesn't translate well to a stacked mobile layout)
+- [ ] Restructure the dvorište gallery on mobile to a hero-photo + thumbnails layout, matching the room galleries, instead of one long stack
+- [ ] Fix top-of-page layout inconsistency vs. desktop — the Booking.com badge/section reads as too small/unnoticeable on mobile
