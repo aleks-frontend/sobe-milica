@@ -31,8 +31,12 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margi
 .navwrap.is-scrolled .navlink{color:#33352B}
 .navlink::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1px;background:currentColor;transition:right .35s ease}
 .navlink:hover::after{right:0}
-.navlangbtn{background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:100px;padding:7px 15px;font-size:12px;font-weight:700;letter-spacing:.08em;transition:color .4s ease,border-color .4s ease}
-.navwrap.is-scrolled .navlangbtn{border-color:#D9D0BE;color:#33352B}
+.navlangswitch{display:inline-flex;align-items:center;gap:2px;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:3px;transition:border-color .4s ease}
+.navwrap.is-scrolled .navlangswitch{border-color:#D9D0BE}
+.navlangswitch-opt{display:inline-flex;align-items:center;gap:7px;text-decoration:none;border-radius:100px;padding:7px 14px;font-size:12px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.75);background:transparent;transition:background .35s ease,color .35s ease}
+.navwrap.is-scrolled .navlangswitch-opt{color:#8A8B7C}
+.navlangswitch-opt.is-active{background:#FBF7EE;color:#33352B}
+.navwrap.is-scrolled .navlangswitch-opt.is-active{background:#2A2E25;color:#FBF7EE}
 .burger{display:none}
 .burger-line{background:#fff;transition:background .4s ease}
 .navwrap.is-scrolled .burger-line{background:#33352B}
@@ -41,7 +45,9 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margi
   [data-nav="open"] .navlinks{transform:none}
   .navlinks .navlink{font-size:20px;color:#33352B!important}
   [data-nav="open"] .burger-line{background:#33352B}
-  [data-nav="open"] .navlangbtn{border-color:#D9D0BE;color:#33352B}
+  [data-nav="open"] .navlangswitch{border-color:#D9D0BE}
+  [data-nav="open"] .navlangswitch-opt{color:#8A8B7C}
+  [data-nav="open"] .navlangswitch-opt.is-active{background:#2A2E25;color:#FBF7EE}
   .burger{display:inline-flex}
   .navcta-desktop{display:none!important}
 }

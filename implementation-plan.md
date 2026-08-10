@@ -104,14 +104,14 @@ Sourced from a Google Doc review pass on the live site (25 numbered notes, #4/#1
 ### Website
 
 - [ ] Add "Pogledajte sobe" nav link next to "Pogledajte dvorište"
-- [ ] Add language flag icons to the sr/en toggle
+- [x] Add language flag icons to the sr/en toggle — went through two iterations. First, emoji flags next to SR/EN text. Then, per a "Claude Design" exploration, rebuilt the whole control as a segmented split-pill (`.navlangswitch`/`.navlangswitch-opt`/`.is-active` in `global.css`, mirroring the existing `.navwrap.is-scrolled` pattern for the active-fill color inversion between the dark hero and scrolled-cream nav states) with real flag SVGs sourced from the `flag-icons` library (Serbia hand-simplified to a plain tricolor using the library's own colors, since its full `rs.svg` is 181KB of coat-of-arms detail — too heavy for a 20px chip). After seeing it live, decided flags added visual noise and text-only reads cleaner — removed the flag SVGs/assets/CSS entirely, keeping just the segmented SR/EN split-pill (`Nav.astro`). Verified in-browser (desktop both scroll states + mobile drawer) and via production build
 - [ ] Move the location map higher on the page (e.g. below the hero, not just at the bottom) — address is important info, per Booking.com's placement
 - [ ] Clarify driving distance vs. walking distance in location copy — emphasize "a few minutes by car"; current wording risks implying a short walk from central Subotica, and reviews mention 10–15 min on foot
-- [ ] Add specific kitchen/bathroom amenity details (towels, hair dryer, cookware) or at least wording like "fully equipped" — "čajna kuhinja" alone is too vague
+- [x] Add specific kitchen/bathroom amenity details (towels, hair dryer, cookware) or at least wording like "fully equipped" — "čajna kuhinja" alone is too vague — went with the "fully equipped" wording the feedback itself offered as a fallback, rather than listing towels/hair dryer/cookware, since that specific inventory couldn't be verified. Updated in `content.ts` (both `sr`/`en`): `roomsSub`, Swan room's `swanDesc`, the `swanFeat`/`roseFeat` bathroom+kitchen tags, and the general `amenities` grid tags — all now read "Opremljeno kupatilo"/"Fully equipped bathroom" and "Opremljena čajna kuhinja"/"Fully equipped kitchenette" consistently. Verified in-browser on both locales; longer labels still fit on one line in the amenities grid cards
 - [ ] Make the Booking.com rating badge (9.4 "Izuzetno") clickable, linking to reviews on Booking.com
 - [ ] Add room photos to the hero section, not just yard photos
 - [ ] Add bed dimensions to room details (a review mentioned a narrow double bed)
-- [ ] Add missing "kitchen" amenity tag to Soba Ruža (Rose) — a photo appears to show one
+- [x] Add missing "kitchen" amenity tag to Soba Ruža (Rose) — confirmed by the user that Rose room does have a kitchenette. Added "Opremljena čajna kuhinja"/"Fully equipped kitchenette" to `roseFeat` (both `sr`/`en`) and mentioned it in `roseDesc`, matching how Swan room's kitchen is described
 - [ ] Fix the sparse/empty second row of amenity icons — add more items or consolidate to one row
 - [ ] Improve the gallery slideshow transition — current effect feels too jarring/clicky
 - [ ] Change the dvorište nav/section icon to something more fitting (e.g. a tree)

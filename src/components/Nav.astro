@@ -4,7 +4,6 @@ import { translations, site, type Lang } from '../data/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = translations[lang];
-const otherLang = lang === 'sr' ? 'en' : 'sr';
 ---
 
 <div class="navwrap" id="navwrap">
@@ -18,7 +17,24 @@ const otherLang = lang === 'sr' ? 'en' : 'sr';
     <a class="navlink" href="#dvoriste" data-close-nav>{t.navGarden}</a>
     <a class="navlink" href="#palic" data-close-nav>Palić</a>
     <a class="navlink" href="#kontakt" data-close-nav>{t.navContact}</a>
-    <a class="btn navlangbtn" id="lang-toggle" href={`/${otherLang}/`} hreflang={otherLang}>{otherLang.toUpperCase()}</a>
+    <div class="navlangswitch" role="group" aria-label="SR / EN">
+      <a
+        class={`navlangswitch-opt${lang === 'sr' ? ' is-active' : ''}`}
+        href="/sr/"
+        hreflang="sr"
+        aria-current={lang === 'sr' ? 'page' : undefined}
+      >
+        <span>SR</span>
+      </a>
+      <a
+        class={`navlangswitch-opt${lang === 'en' ? ' is-active' : ''}`}
+        href="/en/"
+        hreflang="en"
+        aria-current={lang === 'en' ? 'page' : undefined}
+      >
+        <span>EN</span>
+      </a>
+    </div>
     <a
       class="btn navcta-desktop"
       href={site.bookingUrl}
