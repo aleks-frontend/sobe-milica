@@ -136,7 +136,7 @@ export const translations: Record<Lang, Dictionary> = {
       { text: 'Lepo dvorište koje se održava, kao i smeštaj. 10/10. Domaćini su jako ljubazni i prijatni. 10/10. Lokacija je mirna i pogodna za odmor sa decom, parking je dostupan. 10/10. Generalno je smeštaj idealan za odmor sa porodicom na Paliću. Sve preporuke za ove ljude. Nema zamerki.', name: 'Đuričić', origin: 'Srbija', initial: 'Đ' },
       { text: 'Izuzetan smeštaj, prijatna atmosfera i ljubaznost domaćina.', name: 'Cvetanović', origin: 'Srbija', initial: 'C', photo: 'https://lh3.googleusercontent.com/a/AItbvmnDXrtHi3pk-oiZ9pszu0dLAeC6eCW3Sj9R1NlL6g=s96-c' },
       { text: 'Malo i praktično. Domaćica je bila veoma ljubazna i fleksibilna oko dogovora! Vraćamo se ponovo!', name: 'Ivan', origin: 'Češka', initial: 'I' },
-      { text: 'Lepo mesto blizu Palićkog jezera. Vlasnica Milica je bila draga i ljubazna. Hvala, Milice!!!', name: 'Konstantinos', origin: 'Grčka', initial: 'K' },
+      { text: 'Lepo mesto blizu Palićkog jezera. Vlasnica Milica je bila draga i ljubazna. Hvala, Milice!!!', name: 'Konstantinos', origin: 'Grčka', initial: 'K', photo: '/reviews/konstantinos.png' },
     ],
   },
   en: {
@@ -192,7 +192,7 @@ export const translations: Record<Lang, Dictionary> = {
       { text: 'The garden is nicely kept, just like the accommodation. 10/10. The hosts are very kind and friendly. 10/10. The location is quiet and great for a family break, and parking is available. 10/10. Overall this place is ideal for a family holiday in Palić. Highly recommend these people. No complaints.', name: 'Đuričić', origin: 'Serbia', initial: 'Đ' },
       { text: 'Outstanding accommodation, a pleasant atmosphere and such kind hosts.', name: 'Cvetanović', origin: 'Serbia', initial: 'C', photo: 'https://lh3.googleusercontent.com/a/AItbvmnDXrtHi3pk-oiZ9pszu0dLAeC6eCW3Sj9R1NlL6g=s96-c' },
       { text: 'Small and practical. The host was very nice and flexible with the arrangement! We will return again!', name: 'Ivan', origin: 'Czechia', initial: 'I' },
-      { text: 'Nice place close to Palić lake. Milica the owner was a nice, friendly lady. Thank you Milica!!!', name: 'Konstantinos', origin: 'Greece', initial: 'K' },
+      { text: 'Nice place close to Palić lake. Milica the owner was a nice, friendly lady. Thank you Milica!!!', name: 'Konstantinos', origin: 'Greece', initial: 'K', photo: '/reviews/konstantinos.png' },
     ],
   },
 };
