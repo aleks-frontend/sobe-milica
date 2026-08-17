@@ -55,13 +55,14 @@ Not needed for the birthday demo, but the actual point of the project — do thi
 
 ## Phase 4 — Google Business Profile & NAP Consolidation
 
-Blocked on the user getting GBP access from their mother. Runs in parallel with Phases 1–3, not sequentially after them.
+Was blocked on GBP access — resolved 2026-08-17, the user's father (Predrag, `gojkovicp@gmail.com`, Primary Owner) added the user as a **Manager** on the account. Runs in parallel with Phases 1–3, not sequentially after them.
 
-- [ ] Get login access to the Google Business Profile(s)
-- [ ] **Investigate the likely duplicate listing**: the June 2026 performance email refers to a profile named "Studio Milica" (69 interactions, 0 calls, 0 chat clicks, 0 website visits) while a live Google Search knowledge panel shows a *different*-looking listing — "Soba Milica," 4.9★, 33 reviews — for what appears to be the same property. These are probably two separate GBP entries. Determine which is real/owned, and either request Google merge them or report the stale one as a duplicate via Google's official flow
-- [ ] Once consolidated: correct business name to "Soba Milica", correct category (guesthouse/rooms, not generic), working phone number wired to actually receive calls, correct address/hours
-- [ ] Add the website URL (once Phase 2's domain is live) to the profile
-- [ ] Investigate why calls/chat clicks showed 0 despite 69 direction requests in June — likely a missing/wrong phone number or messaging not enabled
+- [x] Get login access to the Google Business Profile(s) — user now has Manager access via their father
+- [x] **Investigate the likely duplicate listing** — confirmed both listings exist under the user's manager access: "Studio Milica" (marked **permanently closed**, 0 reviews — the stale June-2026-performance-email one) and "Soba Milica" (the real, live one — 4.9★, 33 reviews, matches the Search knowledge panel). Not two live competing listings, just one dead one that needs cleanup
+- [ ] **Remove the "Studio Milica" duplicate** — attempted via Business Profile Manager (Business Profile settings → Remove Business Profile) but blocked: "Manager" role can't delete a profile, only Owner/Primary Owner can. User messaged their father (the Primary Owner) 2026-08-17 to do the removal himself; waiting on him. Alternative if he's unresponsive: the public "suggest an edit" flow on Google Maps (flag as permanently closed/duplicate) doesn't require Business Profile Manager permissions at all — Google reviews and can remove it independently
+- [ ] Once the duplicate is gone: correct category on the real "Soba Milica" listing (guesthouse/rooms, not generic), working phone number wired to actually receive calls, correct address/hours — business name is already correct ("Soba Milica")
+- [x] Add the website URL to the profile — set to `https://sobamilica.com` on the real "Soba Milica" listing 2026-08-17 (field was empty before); Google shows the change as pending for up to ~10 minutes to propagate
+- [ ] Investigate why calls/chat clicks showed 0 despite 69 direction requests in June — note this stat was on the stale "Studio Milica" listing being removed, so it may be moot; re-check whether the real "Soba Milica" listing has the same issue once phone/messaging are reviewed
 - [ ] Spot-check the third-party directories found during this discussion (sobe-smestaj.com, eBooking Srbija, visitaserbia.com, Planet of Hotels) for name/address consistency with the canonical NAP — low priority unless a real discrepancy turns up
 
 ## Phase 5 — Growth Content
@@ -103,7 +104,7 @@ Sourced from a Google Doc review pass on the live site (25 numbered notes, #4/#1
 
 ### Website
 
-- [ ] Add "Pogledajte sobe" nav link next to "Pogledajte dvorište"
+- [x] Add "Pogledajte sobe" nav link next to "Pogledajte dvorište" — discussed: rather than running both as separate hero CTAs (which felt crowded — Book / Rooms / Garden), swapped the hero's secondary button from "Pogledajte dvorište" to "Pogledajte sobe" outright, since rooms are the actual product being sold and the garden's emotional pitch is already carried by the hero photo itself. Renamed `heroGarden` → `heroRooms` in `content.ts` (both `sr`/`en`), updated `Hero.astro`'s CTA text and href (`#dvoriste` → `#sobe`). The garden stays one tap away via the nav's "Dvorište" link, same as rooms always were. Verified via production build that both locales render the new label/link
 - [x] Add language flag icons to the sr/en toggle — went through two iterations. First, emoji flags next to SR/EN text. Then, per a "Claude Design" exploration, rebuilt the whole control as a segmented split-pill (`.navlangswitch`/`.navlangswitch-opt`/`.is-active` in `global.css`, mirroring the existing `.navwrap.is-scrolled` pattern for the active-fill color inversion between the dark hero and scrolled-cream nav states) with real flag SVGs sourced from the `flag-icons` library (Serbia hand-simplified to a plain tricolor using the library's own colors, since its full `rs.svg` is 181KB of coat-of-arms detail — too heavy for a 20px chip). After seeing it live, decided flags added visual noise and text-only reads cleaner — removed the flag SVGs/assets/CSS entirely, keeping just the segmented SR/EN split-pill (`Nav.astro`). Verified in-browser (desktop both scroll states + mobile drawer) and via production build
 - [ ] Move the location map higher on the page (e.g. below the hero, not just at the bottom) — address is important info, per Booking.com's placement
 - [ ] Clarify driving distance vs. walking distance in location copy — emphasize "a few minutes by car"; current wording risks implying a short walk from central Subotica, and reviews mention 10–15 min on foot

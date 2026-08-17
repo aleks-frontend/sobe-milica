@@ -33,7 +33,7 @@ export interface Dictionary {
   heroKicker: string;
   heroTag: string;
   heroBook: string;
-  heroGarden: string;
+  heroRooms: string;
   ratingWord: string;
   ratingLabel: string;
   aboutLabel: string;
@@ -88,7 +88,7 @@ export const translations: Record<Lang, Dictionary> = {
     navAbout: 'O nama', navRooms: 'Sobe', navGarden: 'Dvorište', navContact: 'Kontakt', navBook: 'Rezervišite',
     heroKicker: 'Palić · Vojvodina · Srbija',
     heroTag: 'Mirno porodično prenoćište u srcu Palića — dvorište, hlad stare trešnje i topla domaćinska dobrodošlica.',
-    heroBook: 'Rezervišite boravak', heroGarden: 'Pogledajte dvorište',
+    heroBook: 'Rezervišite boravak', heroRooms: 'Pogledajte sobe',
     ratingWord: 'Izuzetno', ratingLabel: 'Ocena na Booking.com',
     aboutLabel: 'O nama', aboutHeading: 'Dom daleko od kuće, okružen zelenilom',
     aboutP1: 'Soba Milica je malo porodično prenoćište u mirnom delu Palića, stvoreno za parove, porodice i putnike koji traže odmor i tišinu. Kod nas se svaki gost oseća kao deo porodice.',
@@ -141,7 +141,7 @@ export const translations: Record<Lang, Dictionary> = {
     navAbout: 'About', navRooms: 'Rooms', navGarden: 'Garden', navContact: 'Contact', navBook: 'Book now',
     heroKicker: 'Palić · Vojvodina · Serbia',
     heroTag: 'A peaceful family guesthouse in the heart of Palić — a garden, the shade of an old tree, and warm, homely hospitality.',
-    heroBook: 'Book your stay', heroGarden: 'See the garden',
+    heroBook: 'Book your stay', heroRooms: 'See the rooms',
     ratingWord: 'Fabulous', ratingLabel: 'Booking.com rating',
     aboutLabel: 'About us', aboutHeading: 'A home away from home, wrapped in green',
     aboutP1: 'Soba Milica is a small family-run guesthouse in a quiet part of Palić, made for couples, families and travellers looking for rest and calm. Here, every guest feels like part of the family.',
