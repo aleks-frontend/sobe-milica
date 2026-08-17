@@ -72,6 +72,8 @@ Was blocked on GBP access — resolved 2026-08-17, the user's father (Predrag, `
 - [ ] Seasonal offers section/page
 - [ ] **Upcoming local events section** (e.g. Palić Film Festival, Berbanski dani, Prvi maj) — homepage section (or small standalone page per event) announcing what's coming up, brief description of the event, and a "book early" nudge toward the Booking.com/WhatsApp CTAs. SEO rationale: not chasing Google's generic "freshness" signal (weak for a static brochure site) but targeting high-intent, low-competition seasonal long-tail queries people only search right before each event ("smeštaj za vreme Palićkog filmskog festivala," "gde odsesti Berbanski dani Subotica") — few competing guesthouses bother targeting these directly. Should carry `Event` JSON-LD structured data per event (name/startDate/endDate/location), not just prose, since that's what can actually earn rich-result visibility. Content has no CMS (per root `CLAUDE.md`, everything lives in `content.ts`), so this needs someone to manually rotate entries each season — worth deciding whether that's an acceptable recurring chore or whether it's worth a lighter structured-list format (dates/name/blurb fields to swap) rather than free-form prose rewritten every time
 - [ ] Revisit whether Swan/Rose rooms deserve their own dedicated pages for SEO once there's more to say about each, vs. staying as homepage sections
+- [x] Source nicer, real review quotes from Booking.com and Google to replace the 3 illustrative placeholders in `content.ts`'s `reviews` array — user pasted 6 real guest reviews (Google-sourced: Serbian/English originals with reviewer names, country, and a couple of real `lh3.googleusercontent.com` avatar photo URLs). Added a `photo?: string` field to the `Review` type; Serbian-native reviews got faithful English translations and vice versa (not fabricated — translated from the real quotes), keeping first-name-only attribution matching the site's existing privacy convention. Avatars are hotlinked directly from Google's CDN rather than downloaded/rehosted, avoiding any re-hosting/consent gray area around third-party reviewer profile photos
+- [x] Turn the Reviews section into a slider — went through two iterations. First built a paginated single-card carousel (prev/next arrows, dot indicators, JS-driven via `main.ts`). User redirected: wanted an **infinite ticker showing 3 reviews at once, auto-scrolling continuously** instead. Rebuilt as a pure-CSS marquee: `Reviews.astro`'s card list is rendered twice back-to-back (`[...t.reviews, ...t.reviews]`) in a `width:max-content` flex track, animated via `@keyframes reviews-marquee` translating `0 → -50%` on an infinite loop — since -50% of a doubled track is exactly one full set, the loop is seamless. Pause-on-hover and `prefers-reduced-motion` (disables the animation entirely) are both plain CSS, no JS needed at all; removed the earlier carousel JS from `main.ts` entirely. Cards have a fixed height with `-webkit-line-clamp:5` on the quote so the longer reviews (guest quotes vary a lot in length) don't produce ragged card heights in the row. Edges fade via a `mask-image` gradient on the wrapper for a cleaner ticker look. Verified in-browser: 3+ cards visible, avatars/initials both render correctly, confirmed actually animating (card set visibly shifted after a few seconds) and looping correctly
 
 ## Phase 6 — Live Booking.com Reviews Widget
 
@@ -131,3 +133,38 @@ Sourced from a Google Doc review pass on the live site (25 numbered notes, #4/#1
 - [ ] Reorder Soba Labud (Swan) section on mobile — text before photos (desktop's photos-left/text-right layout doesn't translate well to a stacked mobile layout)
 - [ ] Restructure the dvorište gallery on mobile to a hero-photo + thumbnails layout, matching the room galleries, instead of one long stack
 - [ ] Fix top-of-page layout inconsistency vs. desktop — the Booking.com badge/section reads as too small/unnoticeable on mobile
+
+---
+
+## Booking reviews
+
+Čist, uredan, prijatan apartman. Opremljen posudjem, peškirima, mirišljavom posteljinom. Kućna atmosfera. Vlasnici prijatni, saradljivi, nenametljivi. Udaljen od jezera 15 minuta hoda.
+Prelepo uredjeno dvorište.
+Toplo preporučujem.
+
+Marijana (SRB)
+Ocena: 10
+
+---
+
+mirno,čisto i udobno,ljubazni i nenametljivi vlasnici.
+
+Ivan (SRB)
+Ocena: 10
+Slika: https://lh3.googleusercontent.com/-3kzSUR3WXMk/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmKu104c1vtObCle_YSLD_hey0eOQ/s96-c/photo.jpg
+
+---
+
+Lepo dvorište koje se održava, kao i smeštaj. 10/10
+Domaćini su jako ljubazni i prijatni. 10/10
+Lokacija je mirna i pogodna za odmor sa decom, parking je dostupan. 10/10
+
+Generalno je smeštaj idealan za odmor sa porodicom na Paliću. Sve preporuke za ove ljude.
+Nema zamerki.
+
+Djuricic (SRB)
+Ocena: 10
+
+---
+
+

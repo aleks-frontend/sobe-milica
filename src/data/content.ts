@@ -20,6 +20,7 @@ export interface Review {
   name: string;
   origin: string;
   initial: string;
+  photo?: string;
 }
 
 export interface Dictionary {
@@ -130,9 +131,12 @@ export const translations: Record<Lang, Dictionary> = {
     ],
     amenities: ['Besplatan WiFi', 'Klima uređaj', 'Besplatan parking', 'Dvorište', 'Roštilj', 'Sedenje napolju', 'TV', 'Opremljeno kupatilo', 'Opremljena čajna kuhinja', 'Za porodice', 'Mirna zona'].map(label => ({ label })),
     reviews: [
-      { text: 'Mala oaza mira. Bašta je ujutru čarobna, a domaćini izuzetno topli i ljubazni.', name: 'Ana', origin: 'Novi Sad, Srbija', initial: 'A' },
-      { text: 'Čisto, mirno i sa dušom. Naša deca su obožavala ljuljašku i trambolinu.', name: 'Márk', origin: 'Segedin, Mađarska', initial: 'M' },
-      { text: 'Savršena baza za obilazak Palića i Subotice. Sigurno se vraćamo.', name: 'Ivana', origin: 'Beograd, Srbija', initial: 'I' },
+      { text: 'Čist, uredan, prijatan apartman. Opremljen posuđem, peškirima, mirišljavom posteljinom. Kućna atmosfera. Vlasnici prijatni, saradljivi, nenametljivi. Udaljen od jezera 15 minuta hoda. Prelepo uređeno dvorište. Toplo preporučujem.', name: 'Marijana', origin: 'Srbija', initial: 'M' },
+      { text: 'Mirno, čisto i udobno, ljubazni i nenametljivi vlasnici.', name: 'Ivan', origin: 'Srbija', initial: 'I', photo: 'https://lh3.googleusercontent.com/-3kzSUR3WXMk/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmKu104c1vtObCle_YSLD_hey0eOQ/s96-c/photo.jpg' },
+      { text: 'Lepo dvorište koje se održava, kao i smeštaj. 10/10. Domaćini su jako ljubazni i prijatni. 10/10. Lokacija je mirna i pogodna za odmor sa decom, parking je dostupan. 10/10. Generalno je smeštaj idealan za odmor sa porodicom na Paliću. Sve preporuke za ove ljude. Nema zamerki.', name: 'Đuričić', origin: 'Srbija', initial: 'Đ' },
+      { text: 'Izuzetan smeštaj, prijatna atmosfera i ljubaznost domaćina.', name: 'Cvetanović', origin: 'Srbija', initial: 'C', photo: 'https://lh3.googleusercontent.com/a/AItbvmnDXrtHi3pk-oiZ9pszu0dLAeC6eCW3Sj9R1NlL6g=s96-c' },
+      { text: 'Malo i praktično. Domaćica je bila veoma ljubazna i fleksibilna oko dogovora! Vraćamo se ponovo!', name: 'Ivan', origin: 'Češka', initial: 'I' },
+      { text: 'Lepo mesto blizu Palićkog jezera. Vlasnica Milica je bila draga i ljubazna. Hvala, Milice!!!', name: 'Konstantinos', origin: 'Grčka', initial: 'K' },
     ],
   },
   en: {
@@ -183,9 +187,12 @@ export const translations: Record<Lang, Dictionary> = {
     ],
     amenities: ['Free WiFi', 'Air conditioning', 'Free parking', 'Garden', 'Barbecue', 'Outdoor seating', 'TV', 'Fully equipped bathroom', 'Fully equipped kitchenette', 'Family friendly', 'Quiet area'].map(label => ({ label })),
     reviews: [
-      { text: 'A little oasis of calm. The garden is magical in the morning and the hosts are so warm.', name: 'Ana', origin: 'Novi Sad, Serbia', initial: 'A' },
-      { text: 'Spotless, quiet and full of heart. Our kids loved the swing and the trampoline.', name: 'Márk', origin: 'Szeged, Hungary', initial: 'M' },
-      { text: 'The perfect base for exploring Palić and Subotica. We will absolutely return.', name: 'Ivana', origin: 'Beograd, Serbia', initial: 'I' },
+      { text: 'Clean, tidy, pleasant apartment. Equipped with dishes, towels, fresh-smelling linens. A homely atmosphere. The hosts are pleasant, helpful and unobtrusive. A 15-minute walk from the lake. A beautifully kept garden. Warmly recommended.', name: 'Marijana', origin: 'Serbia', initial: 'M' },
+      { text: 'Quiet, clean and comfortable — friendly, unobtrusive hosts.', name: 'Ivan', origin: 'Serbia', initial: 'I', photo: 'https://lh3.googleusercontent.com/-3kzSUR3WXMk/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmKu104c1vtObCle_YSLD_hey0eOQ/s96-c/photo.jpg' },
+      { text: 'The garden is nicely kept, just like the accommodation. 10/10. The hosts are very kind and friendly. 10/10. The location is quiet and great for a family break, and parking is available. 10/10. Overall this place is ideal for a family holiday in Palić. Highly recommend these people. No complaints.', name: 'Đuričić', origin: 'Serbia', initial: 'Đ' },
+      { text: 'Outstanding accommodation, a pleasant atmosphere and such kind hosts.', name: 'Cvetanović', origin: 'Serbia', initial: 'C', photo: 'https://lh3.googleusercontent.com/a/AItbvmnDXrtHi3pk-oiZ9pszu0dLAeC6eCW3Sj9R1NlL6g=s96-c' },
+      { text: 'Small and practical. The host was very nice and flexible with the arrangement! We will return again!', name: 'Ivan', origin: 'Czechia', initial: 'I' },
+      { text: 'Nice place close to Palić lake. Milica the owner was a nice, friendly lady. Thank you Milica!!!', name: 'Konstantinos', origin: 'Greece', initial: 'K' },
     ],
   },
 };

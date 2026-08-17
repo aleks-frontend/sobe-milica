@@ -21,20 +21,28 @@ const t = translations[lang];
         </div>
       </div>
     </div>
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
-      {t.reviews.map((r) => (
-        <div style="background:#FBF7EE;border:1px solid #E4DCCB;border-radius:18px;padding:30px 28px">
-          <div style="color:#C9A24B;font-size:16px;letter-spacing:3px;margin-bottom:14px">★★★★★</div>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.45;color:#3d3f33;font-style:italic;margin:0">"<span>{r.text}</span>"</p>
-          <div style="display:flex;align-items:center;gap:12px;margin-top:22px">
-            <div style="width:38px;height:38px;border-radius:50%;background:#7E876B;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">{r.initial}</div>
-            <div style="line-height:1.3">
-              <div style="font-weight:700;font-size:14px;color:#33352B">{r.name}</div>
-              <div style="font-size:12.5px;color:#8A8B7C">{r.origin}</div>
+    <div class="reveal" id="reviews-wrap" style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)">
+      <div class="reviews-track" style="display:flex;gap:20px;width:max-content">
+        {[...t.reviews, ...t.reviews].map((r) => (
+          <div style="flex:0 0 340px;background:#FBF7EE;border:1px solid #E4DCCB;border-radius:18px;padding:28px 26px;height:288px;display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <div style="color:#C9A24B;font-size:15px;letter-spacing:3px;margin-bottom:12px">★★★★★</div>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:16.5px;line-height:1.48;color:#3d3f33;font-style:italic;margin:0;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden">"<span>{r.text}</span>"</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              {r.photo ? (
+                <img src={r.photo} alt="" width="38" height="38" loading="lazy" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none" />
+              ) : (
+                <div style="width:38px;height:38px;border-radius:50%;background:#7E876B;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none">{r.initial}</div>
+              )}
+              <div style="line-height:1.3;text-align:left">
+                <div style="font-weight:700;font-size:14px;color:#33352B">{r.name}</div>
+                <div style="font-size:12.5px;color:#8A8B7C">{r.origin}</div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>

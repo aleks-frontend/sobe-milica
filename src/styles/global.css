@@ -59,6 +59,12 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margi
 .lift:hover{transform:translateY(-6px)}
 .thumb{cursor:pointer;transition:transform .5s ease,filter .5s ease;overflow:hidden}
 .thumb img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+
+/* reviews ticker */
+.reviews-track{animation:reviews-marquee 46s linear infinite}
+#reviews-wrap:hover .reviews-track{animation-play-state:paused}
+@keyframes reviews-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.reviews-track{animation:none}}
 .thumb:hover img{transform:scale(1.07)}
 .chip{transition:background .3s ease,color .3s ease,border-color .3s ease}
 .chip:hover{background:#7E876B;color:#fff;border-color:#7E876B}
