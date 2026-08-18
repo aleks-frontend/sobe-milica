@@ -241,6 +241,7 @@ export const site = {
   bookingUrl: 'https://www.booking.com/hotel/rs/studio-milica.sr.html',
   directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Begejska%201A%2C%2024413%20Pali%C4%87%2C%20Srbija',
   whatsappUrl: 'https://wa.me/381601304893',
+  viberUrl: 'viber://chat?number=%2B381601304893',
   phoneUrl: 'tel:+381601304893',
   phoneDisplay: '060 130 4893',
   emailUrl: 'mailto:milica.gojkovic.66@gmail.com',
