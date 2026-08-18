@@ -6,6 +6,8 @@ import { uploadImage } from '../data/images';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = translations[lang];
+const whatsappHref = `${site.whatsappUrl}?text=${encodeURIComponent(t.inquiryMessage)}`;
+const emailHref = `${site.emailUrl}?subject=${encodeURIComponent(t.inquirySubject)}&body=${encodeURIComponent(t.inquiryMessage)}`;
 ---
 
 <section id="kontakt" style="scroll-margin-top:80px;position:relative;padding:clamp(80px,13vh,170px) clamp(20px,5vw,60px);overflow:hidden">
@@ -20,7 +22,7 @@ const t = translations[lang];
         <span style="display:flex;align-items:center;justify-content:center;width:24px;height:24px;background:#fff;color:#1a3a6b;border-radius:5px;font-size:13px;font-weight:800">B.</span>
         Booking.com · {site.ratingScore}
       </a>
-      <a class="btn" href={site.whatsappUrl} target="_blank" rel="noopener" style="background:#25a35a;color:#fff;border-radius:100px;padding:16px 30px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
+      <a class="btn" href={whatsappHref} target="_blank" rel="noopener" style="background:#25a35a;color:#fff;border-radius:100px;padding:16px 30px;font-size:15px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.6 11.6 0 0 1-4.7-4.2c-.4-.5-1-1.5-1-2.9 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.6-.3.3c-.1.2-.3.3-.1.6.2.4.8 1.3 1.6 2 1 .9 1.9 1.2 2.2 1.3.3.2.5.1.7-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.2.5.2.5.4.1.2.1.8-.1 1.3z"></path></svg>
         WhatsApp
       </a>
@@ -32,7 +34,7 @@ const t = translations[lang];
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
         {site.phoneDisplay}
       </a>
-      <a class="btn" href={site.emailUrl} style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(4px)">
+      <a class="btn" href={emailHref} style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:16px 30px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;backdrop-filter:blur(4px)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
         <span>{t.contactEmail}</span>
       </a>

@@ -71,6 +71,8 @@ export interface Dictionary {
   contactHeading: string;
   contactSub: string;
   contactEmail: string;
+  inquirySubject: string;
+  inquiryMessage: string;
   footerRights: string;
   footerMade: string;
   features: LabeledItem[];
@@ -114,6 +116,8 @@ export const translations: Record<Lang, Dictionary> = {
     contactLabel: 'Rezervacije', contactHeading: 'Rezervišite svoj mir',
     contactSub: 'Javite nam se direktno ili rezervišite preko Booking.com-a. Rado ćemo odgovoriti na sva pitanja i pomoći da isplanirate savršen odmor.',
     contactEmail: 'Pošaljite e-mail',
+    inquirySubject: 'Upit za rezervaciju — Soba Milica',
+    inquiryMessage: 'Zdravo! Zanima me smeštaj u Sobi Milica. Datumi: ___, broj gostiju: ___',
     footerRights: 'Sva prava zadržana.', footerMade: 'Porodično prenoćište na Paliću',
     features: ['Mirno susedstvo', 'Porodična atmosfera', 'Prelepo dvorište', 'Sedenje napolju', 'Roštilj', 'Besplatan parking', 'Blizu jezera'].map(label => ({ label })),
     swanFeat: ['Bračni krevet', 'Pomoćni ležaj', 'Opremljena čajna kuhinja', 'Opremljeno kupatilo', 'Klima uređaj'].map(label => ({ label })),
@@ -170,6 +174,8 @@ export const translations: Record<Lang, Dictionary> = {
     contactLabel: 'Reservations', contactHeading: 'Book your peace & quiet',
     contactSub: 'Get in touch directly or book through Booking.com. We are happy to answer any questions and help you plan the perfect break.',
     contactEmail: 'Send an e-mail',
+    inquirySubject: 'Booking inquiry — Soba Milica',
+    inquiryMessage: "Hi! I'd like to inquire about a stay at Soba Milica. Dates: ___, guests: ___",
     footerRights: 'All rights reserved.', footerMade: 'A family guesthouse in Palić',
     features: ['Quiet neighbourhood', 'Family atmosphere', 'Beautiful garden', 'Outdoor seating', 'Barbecue', 'Free parking', 'Near Lake Palić'].map(label => ({ label })),
     swanFeat: ['Double bed', 'Extra bed', 'Fully equipped kitchenette', 'Fully equipped bathroom', 'Air conditioning'].map(label => ({ label })),
