@@ -67,11 +67,15 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margi
 #reviews-wrap:hover .reviews-track{animation-play-state:paused}
 @keyframes reviews-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.reviews-track{animation:none}}
+.reviews-dots{display:none;justify-content:center;gap:9px;margin-top:22px}
+.reviews-dot{width:7px;height:7px;padding:0;border-radius:50%;background:#D9D0BE;border:none;cursor:pointer;transition:background .3s ease,transform .3s ease}
+.reviews-dot.is-active{background:#B98A72;transform:scale(1.35)}
 @media(max-width:640px){
   .reviews-track{animation:none;width:auto}
   .reviews-mask{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .reviews-mask::-webkit-scrollbar{display:none}
   .reviews-set-dup{display:none}
+  .reviews-dots{display:flex}
 }
 .thumb:hover img{transform:scale(1.07)}
 .chip{transition:background .3s ease,color .3s ease,border-color .3s ease}

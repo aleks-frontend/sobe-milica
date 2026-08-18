@@ -24,13 +24,18 @@ const t = translations[lang];
     </div>
     <div class="reveal reviews-mask" id="reviews-wrap">
       <div class="reviews-track">
-        <div class="reviews-set">
+        <div class="reviews-set" id="reviews-set">
           {t.reviews.map((r) => <ReviewCard review={r} />)}
         </div>
         <div class="reviews-set reviews-set-dup" aria-hidden="true">
           {t.reviews.map((r) => <ReviewCard review={r} />)}
         </div>
       </div>
+    </div>
+    <div class="reviews-dots" id="reviews-dots">
+      {t.reviews.map((_, i) => (
+        <button class={`reviews-dot${i === 0 ? ' is-active' : ''}`} data-index={i} aria-label={`${i + 1}`}></button>
+      ))}
     </div>
   </div>
 </section>

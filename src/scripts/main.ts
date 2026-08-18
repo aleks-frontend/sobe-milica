@@ -126,3 +126,28 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') nextLightbox();
   if (e.key === 'ArrowLeft') prevLightbox();
 });
+
+// ---- reviews mobile swipe dots ----
+const reviewsWrapEl = document.getElementById('reviews-wrap');
+const reviewsSetEl = document.getElementById('reviews-set');
+const reviewDots = Array.from(document.querySelectorAll<HTMLButtonElement>('.reviews-dot'));
+if (reviewsWrapEl && reviewsSetEl && reviewDots.length) {
+  const reviewCards = Array.from(reviewsSetEl.children) as HTMLElement[];
+  const dotObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const index = reviewCards.indexOf(entry.target as HTMLElement);
+        if (index === -1) return;
+        reviewDots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+      });
+    },
+    { root: reviewsWrapEl, threshold: 0.6 },
+  );
+  reviewCards.forEach((card) => dotObserver.observe(card));
+  reviewDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      reviewCards[i]?.scrollIntoView({ behavior: 'instant', inline: 'center', block: 'nearest' });
+    });
+  });
+}
