@@ -239,6 +239,8 @@ export const site = {
   addressLine1: 'Begejska 1/A',
   addressLine2: '24413 Palić, Srbija',
   bookingUrl: 'https://www.booking.com/hotel/rs/studio-milica.sr.html',
+  // Booking.com's standard reviews-tab anchor on hotel pages.
+  bookingReviewsUrl: 'https://www.booking.com/hotel/rs/studio-milica.sr.html#tab-reviews',
   directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Begejska%201A%2C%2024413%20Pali%C4%87%2C%20Srbija',
   whatsappUrl: 'https://wa.me/381601304893',
   viberUrl: 'viber://chat?number=%2B381601304893',
