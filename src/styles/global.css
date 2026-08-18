@@ -60,11 +60,19 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;margi
 .thumb{cursor:pointer;transition:transform .5s ease,filter .5s ease;overflow:hidden}
 .thumb img{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 
-/* reviews ticker */
-.reviews-track{animation:reviews-marquee 46s linear infinite}
+/* reviews ticker (desktop: auto-scrolling marquee; mobile: manual swipe, see breakpoint below) */
+.reviews-mask{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.reviews-track{display:flex;gap:20px;width:max-content;animation:reviews-marquee 46s linear infinite}
+.reviews-set{display:flex;gap:20px}
 #reviews-wrap:hover .reviews-track{animation-play-state:paused}
 @keyframes reviews-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.reviews-track{animation:none}}
+@media(max-width:640px){
+  .reviews-track{animation:none;width:auto}
+  .reviews-mask{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .reviews-mask::-webkit-scrollbar{display:none}
+  .reviews-set-dup{display:none}
+}
 .thumb:hover img{transform:scale(1.07)}
 .chip{transition:background .3s ease,color .3s ease,border-color .3s ease}
 .chip:hover{background:#7E876B;color:#fff;border-color:#7E876B}
